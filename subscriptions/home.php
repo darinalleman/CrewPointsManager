@@ -13,12 +13,12 @@
 <body>
   <nav class="orange" role="navigation">
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
-         href="../index.html" class="brand-logo"><img src=../Ship_logo.png></a>
-      <ul style="margin-right:2%; " class="right container hide-on-med-and-down">
-        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='events/home.html'" >Events</a></li>
-        <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
-        <li><a href="mobile.html"><i class="material-icons left">account_circle</i>Profile</a></li>
+         href="../index.html" class="brand-logo"><img src=../Ship_logo.png>
+      <ul class="right hide-on-med-and-down">
+        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
+        <li><a onclick="location.href='../events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='home.php'">Subscriptions</a></li>
+        <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -32,7 +32,7 @@
 
 
   <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
+    <div class="container" style="height:100%">
         <br>
       <h4 class="header center blue-text">Subscriptions</h1>
       <div class="row center">
@@ -40,12 +40,8 @@
       </div>
       <div class="row center">
         <div style="width:50%; margin:auto;">
-            <form method="post">
-                <input name="email" placeholder="Your email address" type="email" />
-                <input class="btn-large waves-effect waves-light light-blue" type="submit" value="Subscribe" />
-            </form>
             <?php
-          //if "email" variable is filled out, send email
+            //if "email" variable is filled out, send email
             if (isset($_REQUEST['email']))  {
             
             //Email information
@@ -58,7 +54,14 @@
             mail($email, "$subject", $body, "From:" . $admin_email);
             
             //Email response
-            echo "Check your email for a confirmation link.";
+            echo "<p>Check your email for a confirmation link.</p><br><br><br><br>";
+            }
+            else{
+              echo "
+            <form method=\"post\">
+                <input name=\"email\" placeholder=\"Your email address\" type=\"email\" />
+                <input class=\"btn-large waves-effect waves-light light-blue\" type=\"submit\" value=\"Subscribe\" />
+            </form>";
             }
           ?>
         </div>
@@ -69,7 +72,7 @@
     </div>
   </div>
 
-  <footer class="page-footer orange">
+  <footer class="page-footer grey darken-3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -80,7 +83,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Made by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
     </div>
   </footer>
