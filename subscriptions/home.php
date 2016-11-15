@@ -17,13 +17,13 @@
       <ul style="padding-left: 20%" class="left hide-on-med-and-down">
         <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
         <li><a onclick="location.href='events/home.html'" >Events</a></li>
-        <li><a onclick="location.href='home.html'" >Subscriptions</a></li>
+        <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
         <li><a onclick="location.href='events/home.html'" >Events</a></li>
-        <li><a onclick="location.href='home.html'" >Subscriptions</a></li>
+        <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -39,10 +39,29 @@
       </div>
       <div class="row center">
         <div style="width:50%; margin:auto;">
-            <input type="email" name="email" placeholder="Your email address">
+            <form method="post">
+                <input name="email" placeholder="Your email address" type="email" />
+                <input class="btn-large waves-effect waves-light light-blue" type="submit" value="Subscribe" />
+            </form>
+            <?php
+          //if "email" variable is filled out, send email
+            if (isset($_REQUEST['email']))  {
+            
+            //Email information
+            $email = $_REQUEST['email'];
+            $admin_email = "crews-no-reply@cs.ship.edu";
+            $subject = "Confirm your Ship CS Department Crews subscription";
+            $body = "Body";
+            
+            //send email
+            mail($email, "$subject", $body, "From:" . $admin_email);
+            
+            //Email response
+            echo "Check your email for a confirmation link.";
+            }
+          ?>
         </div>
-        
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light light-blue">Subscribe!</a>
+          
       </div>
       <br><br>
 
@@ -55,8 +74,6 @@
         <div class="col l6 s12">
           <h5 class="white-text">Company Bio</h5>
           <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
         </div>
       </div>
     </div>
