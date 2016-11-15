@@ -12,12 +12,13 @@
 </head>
 <body>
   <nav class="orange" role="navigation">
-    <div style="margin-left: 10%;"  class="nav-wrapper container"><a id="logo-container" 
+    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
          href="../index.html" class="brand-logo"><img src=../Ship_logo.png></a>
-      <ul style="padding-left: 20%" class="left hide-on-med-and-down">
+      <ul style="margin-right:2%; " class="right container hide-on-med-and-down">
         <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
         <li><a onclick="location.href='events/home.html'" >Events</a></li>
         <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
+        <li><a href="mobile.html"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
