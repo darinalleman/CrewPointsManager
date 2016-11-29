@@ -13,17 +13,17 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
-         href="index.html" class="brand-logo"><img src=Ship_logo.png>
+         href="" class="brand-logo"><img src=Ship_logo.png>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='events/home.php'" >Events</a></li>
         <li><a onclick="location.href='subscriptions/home.php'" >Subscriptions</a></li>
         <li><a href="mobile.html"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='events/home.php'" >Events</a></li>
         <li><a onclick="location.href='subscriptions/home.php'" >Subscriptions</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -32,9 +32,24 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Starter Template</h1>
+      <h4 class="header center orange-text">Current Standings</h4>
       <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+         <table class="centered" style="width:100%">
+            <thead>
+              <tr>
+                <th data-field="id">Out Of Bounds</th>
+                <th data-field="name">Off By One</th>
+                <th data-field="price">Null Pointer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>300</td>
+                <td>100</td> 
+                <td>50</td>
+              </tr>
+            </tbody>
+          </table>
       </div>
       <div class="row center">
         <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Click here to log in</a>
@@ -46,6 +61,15 @@
 
 
   <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+           
+        </div>
+      </div>
+    </div>
     <div class="section">
 
       <!--   Icon Section   -->
@@ -126,7 +150,6 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
 
   </body>
 </html>
