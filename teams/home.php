@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php
 	require "../db_info/db.php";
+	function getTeamNames()
+	{
+		$query = "SELECT * FROM TEAMS";
+		$result = $conn->query($query);
+	}
 ?>
 <html lang="en">
 <head>
@@ -38,30 +43,42 @@
             <thead>
               <tr>
                 <th data-field="name">Team</th>
-                <th data-field="teamPoints">Points</th>
-                <th data-field="teamColor">Color</th>
                 <th data-field="teamLeader">Leader</th>
+                <th data-field="teamColor">Color</th>
+                <th data-field="teamPoints">Points</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Null Pointer</td>
-                <td>5000000</td>
-                <td>Red</td>
-                <td>Dr. Girard</td>
-              </tr>
-              <tr>
-              	 <td>Off By One</td>
-              	 <td>1</td>
-              	 <td>Blue</td>
-              	 <td>Dr. Armstrong</td>
-              </tr>
-              <tr>
-              	 <td>Out Of Bounds</td>
-              	 <td>0</td>
-              	 <td>Green</td>
-              	 <td>Dr. Wellington</td>
-              </tr>
+              <?php
+              		$query = "SELECT * FROM TEAMS";
+              		while($row = mysql_fetch_array($query))
+              		{
+              			echo "<tr>";
+              			echo "<td>".$row["name"]."</td>";
+              			echo "<td>".$row["teamLeader"]."</td>";
+              			echo "<td>".$row["teamColor"]."</td>";
+              			echo "<td>".$row["teamPoints"]."</td>";
+              			echo "</tr>";
+              		}
+              ?>
+              <!--<tr>-->
+              <!--  <td>Null Pointer</td>-->
+              <!--  <td>5000000</td>-->
+              <!--  <td>Red</td>-->
+              <!--  <td>Dr. Girard</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+              <!--	 <td>Off By One</td>-->
+              <!--	 <td>1</td>-->
+              <!--	 <td>Blue</td>-->
+              <!--	 <td>Dr. Armstrong</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+              <!--	 <td>Out Of Bounds</td>-->
+              <!--	 <td>0</td>-->
+              <!--	 <td>Green</td>-->
+              <!--	 <td>Dr. Wellington</td>-->
+              <!--</tr>-->
             </tbody>
           </table>
       </div>

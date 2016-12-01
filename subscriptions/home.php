@@ -52,12 +52,16 @@
                 $subject = "Confirm your Ship CS Department Crews subscription";
 
                 $body = "
-                <b>Confirm your subscription</b>:
+                Confirm your subscription:
 
                 webprog.cs.ship.edu/webprog29/subscriptions/confirm.php?email=".$crypt."
 
-                If you did not request this email, you can safely ignore it.
 
+
+
+
+
+                If you did not request this email, you can safely ignore it.
 
                 Unsubscribe: webprog.cs.ship.edu/webprog29/subscriptions/unsub.php?email=".$crypt."
                 ";
@@ -96,15 +100,12 @@ function validateEmail(email) {
 }
 
 function validate() {
-  console.log("calling validate");
   $("#result").text("");
   var email = $("#email").val();
   if (validateEmail(email)) {
-    console.log("Valid");
     $("#result").text(email + " is valid :)");
     $("#result").css("color", "green");
   } else {
-    console.log("Not valid");
     $("#result").text(email + " is not valid :(");
     $("#result").css("color", "red");
   }

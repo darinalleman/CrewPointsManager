@@ -16,14 +16,14 @@
   {
     $safe_email = htmlentities($_POST['email']);
     $user = fetchUser($safe_email);
-    if( !$user ) die("Invalid username/password combination. <br />");
+    if( !$user ) echo("Invalid username/password combination. <br />");
     if( password_verify($_POST['password'], $user['password']) )
     {
       echo "Logged In!";
       $_SESSION['email'] = $safe_email;
     } else
     {
-      die("Invalid username/password combination. <br />");
+      echo("Invalid username/password combination. <br />");
     }
   }
 ?>
