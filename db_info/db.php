@@ -1,5 +1,5 @@
 <?php
-    require_once 'db_login_info.php';
+    require_once 'config.php';
     $user_name = $usernameStored;
     $pwd = $passwordStored;
     $db_host = 'webprog.cs.ship.edu';

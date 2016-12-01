@@ -41,6 +41,7 @@
       <div class="row center">
         <div style="width:50%; margin:auto;">
             <?php
+            require_once('../db_info/config.php');
             //if "email" variable is filled out, send email
             if (isset($_REQUEST['email']))  {
               $email = $_REQUEST['email'];
@@ -48,7 +49,7 @@
                 $emailErr = "Invalid email format";
               }
               else{
-                $crypt = openssl_encrypt($email, "aes-256-ctr", "7d49782f2d2e465a");
+                $crypt = openssl_encrypt($email, "aes-256-ctr", $key);
                 $admin_email = "crews-no-reply@cs.ship.edu";
                 $subject = "Confirm your Ship CS Department Crews subscription";
 

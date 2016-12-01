@@ -41,7 +41,7 @@
           $id = $_GET['email'];
 
           if($id) {
-              $decrypted = openssl_decrypt($id, "aes-256-ctr", "7d49782f2d2e465a");
+              $decrypted = openssl_decrypt($id, "aes-256-ctr", $key);
 
               if ($conn->connect_error) die($conn->connect_error);
               else

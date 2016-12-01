@@ -29,8 +29,6 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
-
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
@@ -49,39 +47,31 @@
 	            
 	            $username = "webprog29";
 	            $servername = "webprog.cs.ship.edu";
-	            $username = "webprog29";
 	            $password = "sweamare";
 	            $dbname = "webprog29";
 	            
 	          	$conn = new mysqli($servername, $username, $password, $dbname);
 	          	
-	          	$stmt = $conn->prepare("INSERT INTO EVENTS(event_type, event_date, event_location, event_time, event_points, event_winner) VALUES (?,?,?,?,?,?)");
-	          	if($stmt == false)
-	          	{
-		          	echo "error with sql stmt";
-	          	}
-	          	$stmt->bind_param('issssis', $type, $date, $location, $time, $points, $winner);
-	          	$stmt->execute();
+	          	//$stmt = $conn->prepare("INSERT INTO EVENTS(event_type, event_location, event_date, event_time, event_points, event_winner) VALUES (?,?,?,?,?,?)");
+	          	//$stmt->bind_param('isssis', $type, $location, $date, $time, $points, $winner);
+	          	//$stmt->execute();
 	
-echo <<<_END
+?>
 		<form name = "addEvent" method ="post" action ="addEvent.php">
 			<label>Type:</label><br>
-			<input type = "date" name = "type"><br>
+			<input type = "date" name = "event_type"><br>
 			<label>Date (YYYY-MM-DD):</label><br>
-			<input type = "text" name = "date"><br>
+			<input type = "text" name = "event_date"><br>
 			<label>Location:</label><br>
-			<input type = "text" name ="location"><br>
+			<input type = "text" name ="event_location"><br>
 			<label>Time:</label><br>
-			<input type = "text" name = "time"><br>
+			<input type = "text" name = "event_time"><br>
 			<label>Points:</label><br>
-			<input type ="text" name = "points"</label><br>
+			<input type ="text" name = "event_points"</label><br>
 			<label>Winner:</label>
-			<input type ="text" name = "winner">
+			<input type ="text" name = "event_winner">
 			<button type = "submit">submit</button>
-			
 		</form>		
-_END;
-?>
         </div>
         <br>
       </div>

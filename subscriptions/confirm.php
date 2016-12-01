@@ -28,8 +28,6 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
-
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
@@ -41,7 +39,7 @@
         $id = $_GET['email'];
 
         if($id) {
-            $decrypted = openssl_decrypt($id, "aes-256-ctr", "7d49782f2d2e465a");
+            $decrypted = openssl_decrypt($id, "aes-256-ctr", $key);
             if ($conn->connect_error) die($conn->connect_error);
             else
             {
