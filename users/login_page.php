@@ -26,26 +26,35 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  <div class="row">
-    <h5>Please Login.</h5>
-    <form method="post" action="login.php" class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container" style="height:100%">
+        <br>
+      <h4 class="header center blue-text">Login</h1>
+      <div class="row center">
+        <div style="width:50%; margin:auto;">
+          <form method="post" action="login.php" class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Email" id="email" type="email" class="validate">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Password" id="password" type="password" class="validate">
+              </div>
+            </div>
+            <br /><br />
+            <button class="btn waves-effect waves-light" type="submit" name="action">Login
+            </button>
+          </form>
         </div>
+
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <br /><br />
-      <button class="btn waves-effect waves-light" type="submit" name="action">Login
-      </button>
-    </form>
+      <br><br>
+
+    </div>
   </div>
+
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
