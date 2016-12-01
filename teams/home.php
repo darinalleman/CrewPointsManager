@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<?php
-	require "../db_info/db.php";
-	function getTeamNames()
-	{
-		$query = "SELECT * FROM TEAMS";
-		$result = $conn->query($query);
-	}
-?>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -50,14 +42,17 @@
             </thead>
             <tbody>
               <?php
+              		require '../db_info/db.php';
               		$query = "SELECT * FROM TEAMS";
-              		while($row = mysql_fetch_array($query))
+              		$result = $conn->query($query);
+              		
+              		while($row = mysqli_fetch_array($result))
               		{
               			echo "<tr>";
-              			echo "<td>".$row["name"]."</td>";
-              			echo "<td>".$row["teamLeader"]."</td>";
-              			echo "<td>".$row["teamColor"]."</td>";
-              			echo "<td>".$row["teamPoints"]."</td>";
+              			echo "<td>".$row['name']."</td>";
+              			echo "<td>".$row['teamLeader']."</td>";
+              			echo "<td>".$row['teamColor']."</td>";
+              			echo "<td>".$row['teamPoints']."</td>";
               			echo "</tr>";
               		}
               ?>

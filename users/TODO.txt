@@ -1,4 +1,4 @@
--- move logout logic to script
+-- move logout logic to it's own script
 -- add user homepage
 -- add functionality to add / remove users
 -- client + server side validation of email

@@ -37,7 +37,7 @@
       <h4 class="header center blue-text">Events</h1>
 	      <div class = "row-center">
 		  <div style="width:50%; margin:auto;">
-			  <table class='centered' style="width:100%"><thead><tr><th>Event Type</th><th>Date</th><th>Location</th><th>Time</th><th>Points</th><th>Winner</th></tr></thead>
+			  <table class='centered' style="width:100%"><thead><tr><th>Event Type</th><th>Location</th><th>Date</th><th>Time</th><th>Points</th><th>Winner</th></tr></thead>
 		    <?php
 	            $username = "webprog29";
 	            $servername = "webprog.cs.ship.edu";
@@ -64,7 +64,7 @@
 				while($row = $result->fetch_assoc())
 				{
 					echo "<tr>";
-					echo "<td>$row[type]</td><td>$row[date]</td><td>$row[location]</td><td>$row[time]</td><td>$row[points]</td><td>$row[winner]</td>";
+					echo "<td>$row[event_type]</td><td>$row[event_location]</td><td>$row[event_date]</td><td>$row[event_time]</td><td>$row[event_points]</td><td>$row[event_winner]</td>";
 					echo "</tr>";
 				}
 		

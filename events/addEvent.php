@@ -22,8 +22,8 @@
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='events/home.php'" >Events</a></li>
         <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -40,12 +40,12 @@
         <div style="width:50%; margin:auto;">
             <?php
 	            
-	            if(isset($_POST['type'])) $type = $_POST['type'];
-				if(isset($_POST['date']))$date = $_POST['date'];
-				if(isset($_POST['location'])) $location = $_POST['location'];
-				if(isset($_POST['time'])) $time = $_POST['time'];
-				if(isset($_POST['points'])) $points = $_POST['points'];
-				if(isset($POST['winner'])) $winner = strtoupper(($_POST['winner']));
+	            if(isset($_POST['event_type'])) $type = $_POST['event_type'];
+				if(isset($_POST['event_date']))$date = $_POST['event_date'];
+				if(isset($_POST['event_location'])) $location = $_POST['event_location'];
+				if(isset($_POST['event_time'])) $time = $_POST['event_time'];
+				if(isset($_POST['event_points'])) $points = $_POST['event_points'];
+				if(isset($POST['event_winner'])) $winner = $_POST['event_winner'];
 	            
 	            $username = "webprog29";
 	            $servername = "webprog.cs.ship.edu";
@@ -54,12 +54,17 @@
 	            $dbname = "webprog29";
 	            
 	          	$conn = new mysqli($servername, $username, $password, $dbname);
-	          	$stmt = $conn->prepare("INSERT INTO EVENTS(type, date, location, time, points, winner) VALUES(?,?,?,?,?,?)");
-	          	$stmt->bind_param('sissis', $type, $date, $location, $time, $points, $winner);
+	          	
+	          	$stmt = $conn->prepare("INSERT INTO EVENTS(event_type, event_date, event_location, event_time, event_points, event_winner) VALUES (?,?,?,?,?,?)");
+	          	if($stmt == false)
+	          	{
+		          	echo "error with sql stmt";
+	          	}
+	          	$stmt->bind_param('issssis', $type, $date, $location, $time, $points, $winner);
 	          	$stmt->execute();
 	
 echo <<<_END
-		<form name = "addElectronic" method ="post" action ="addEvent.php">
+		<form name = "addEvent" method ="post" action ="addEvent.php">
 			<label>Type:</label><br>
 			<input type = "date" name = "type"><br>
 			<label>Date (YYYY-MM-DD):</label><br>
@@ -79,18 +84,6 @@ _END;
 ?>
         </div>
         <br>
-        
-        <?php
-	        //checks to see if the user is logged in. 
-		 	if(session_status() == PHP_SESSION_ACTIVE)   
-		 	{
-			 	echo "logged in";
-		 	}
-		 	else
-		 	{
-			 	echo "not logged in";
-		 	} 
-		 ?>
       </div>
       <br><br>
 

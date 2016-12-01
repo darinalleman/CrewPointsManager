@@ -18,25 +18,18 @@
         <li><a onclick="location.href='events/home.php'" >Events</a></li>
         <li><a onclick="location.href='subscriptions/home.php'" >Subscriptions</a></li>
         <?php
-          // is the user logged in? yes - home, no - ask them to login
-          require_once('users/functions.php');
-          secureSession();
-
-          if( !isLoggedIn() )
-          {
-            echo '<li><a onclick=' . 'location.href="users/login_page.php"' . '><i class="material-icons left">account_circle</i>Profile</a></li>';
-
-          } else
-          {
-            echo '<li><a onclick="location.href="users/home.php""><i class="material-icons left">account_circle</i>Profile</a></li>';
-          }
+          require_once('users/setProfileLink.php');
         ?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a onclick="location.href='teams/home.php'" >Teams</a></li>
         <li><a onclick="location.href='events/home.php'" >Events</a></li>
-        <li><a onclick="location.href='subscriptions/home.php'" >Subscriptions</a></li>
+        <li><a onclick="location.href='subscriptions/home.php'">Subscriptions</a></li>
+        <hr>
+        <?php
+            require_once('users/setProfileLinkMobile.php');
+         ?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>

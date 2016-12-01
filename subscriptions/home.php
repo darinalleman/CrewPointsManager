@@ -14,16 +14,17 @@
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
-        <li><a onclick="location.href='../events/home.php'" >Events</a></li>
-        <li><a onclick="location.href='home.php'">Subscriptions</a></li>
-        <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
-        <li><a onclick="location.href='../events/home.php'" >Events</a></li>
-        <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <?php require_once('../users/setProfileLinkMobile.php');?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
