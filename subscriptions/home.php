@@ -11,7 +11,7 @@
 </head>
 <body>
   <nav class="orange" role="navigation">
-    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
+    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
         <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
@@ -43,48 +43,75 @@
             //if "email" variable is filled out, send email
             if (isset($_REQUEST['email']))  {
               $email = $_REQUEST['email'];
-              $crypt = openssl_encrypt($email, "aes-256-ctr", "7d49782f2d2e465a");
-              $admin_email = "crews-no-reply@cs.ship.edu";
-              $subject = "Confirm your Ship CS Department Crews subscription";
+              if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Invalid email format";
+              }
+              else{
+                $crypt = openssl_encrypt($email, "aes-256-ctr", "7d49782f2d2e465a");
+                $admin_email = "crews-no-reply@cs.ship.edu";
+                $subject = "Confirm your Ship CS Department Crews subscription";
 
-              $body = "
-              Confirm your subscription: 
-              
-              webprog.cs.ship.edu/webprog29/subscriptions/confirm.php?email=".$crypt."
-              
-              If you did not request this email, you can safely ignore it.
-              
+                $body = "
+                <b>Confirm your subscription</b>:
 
-              Unsubscribe: webprog.cs.ship.edu/webprog29/subscriptions/unsub.php?email=".$crypt."
-              ";
-            
-              //send email
-              mail($email, "$subject", $body, "From:" . $admin_email);
-            
-              //Email response
-              echo "<p>Check your email for a confirmation link.</p><br><br><br><br>";
+                webprog.cs.ship.edu/webprog29/subscriptions/confirm.php?email=".$crypt."
+
+                If you did not request this email, you can safely ignore it.
+
+
+                Unsubscribe: webprog.cs.ship.edu/webprog29/subscriptions/unsub.php?email=".$crypt."
+                ";
+
+                //send email
+                mail($email, "$subject", $body, "From:" . $admin_email);
+
+                //Email response
+                echo "<p>Check your email for a confirmation link.</p><br><br><br><br>";
+              }
             }
             else{
               echo "
-            <form method=\"post\">
-                <input name=\"email\" placeholder=\"Your email address\" type=\"email\" />
-                <input class=\"btn-large waves-effect waves-light light-blue\" type=\"submit\" value=\"Subscribe\" />
+            <form id=\"emailform\" method=\"post\">
+                <input id=\"email\" name=\"email\" placeholder=\"Your email address\" type=\"email\" />
+                <input id=\"validate\" class=\"btn-large waves-effect waves-light light-blue\" type=\"submit\" value=\"Subscribe\" />
             </form>";
             }
           ?>
         </div>
-          
+
       </div>
       <br><br>
 
     </div>
   </div>
 
- 
-
 <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <script src="../js/init.js"> </script>
+<script type="text/javascript">
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validate() {
+  console.log("calling validate");
+  $("#result").text("");
+  var email = $("#email").val();
+  if (validateEmail(email)) {
+    console.log("Valid");
+    $("#result").text(email + " is valid :)");
+    $("#result").css("color", "green");
+  } else {
+    console.log("Not valid");
+    $("#result").text(email + " is not valid :(");
+    $("#result").css("color", "red");
+  }
+  return false;
+}
+
+$("emailform").bind("submit", validate);
+</script>
   </body>
 </html>

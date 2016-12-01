@@ -11,7 +11,7 @@
 </head>
 <body>
   <nav class="orange" role="navigation">
-    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
+    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
         <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
@@ -36,39 +36,26 @@
       <h4 class="header center blue-text">Unsubscribed</h4>
       <div class="row center">
         <?php
+          require '../db_info/db.php';
+
           $id = $_GET['email'];
 
           if($id) {
               $decrypted = openssl_decrypt($id, "aes-256-ctr", "7d49782f2d2e465a");
-              if (file_exists("../db_info/db_login_info.txt")) 
+
+              if ($conn->connect_error) die($conn->connect_error);
+              else
               {
-                  //open my secret file that has the username on the first line
-                  $fh = fopen("../db_info/db_login_info.txt","r");
-                  $user_name = fgets($fh);
-                  //and the password on the second line
-                  $pwd = fgets($fh); 
-                  fclose($fh);
-                  //clean up the input 
-                  $user_name = trim(preg_replace('/\R+/', ' ',$user_name));
-                  $pwd = trim(preg_replace('/\R+/', ' ',$pwd));
-                  $db_host = 'webprog.cs.ship.edu';
-                  $db = 'webprog29';
-                  //connect to the database
-                  $conn = new mysqli($db_host,$user_name,$pwd,$db);
-                  if ($conn->connect_error) die($conn->connect_error);
-                  else 
-                  {
-                      mysqli_query($conn,"DELETE FROM SUBSCRIPTIONS WHERE email = '".$decrypted."';");
-                      echo "<h5 class=\"header col s12 light\">We're sorry to see you go. ".$decrypted." has been unsubscribed from our list.</h5>";
-                      mysqli_commit($conn);
-                  }
+                  mysqli_query($conn,"DELETE FROM SUBSCRIPTIONS WHERE email = '".$decrypted."';");
+                  echo "<h5 class=\"header col s12 light\">We're sorry to see you go. ".$decrypted." has been unsubscribed from our list.</h5>";
+                  mysqli_commit($conn);
               }
           }
           else {
               echo '<p>No ID parameter.</p>';
           }
 
-          ?>
+        ?>
       </div>
       <div class="row center">
         <div style="width:50%; margin:auto;">
@@ -76,7 +63,7 @@
 
             </script>
         </div>
-          
+
       </div>
       <br><br>
 

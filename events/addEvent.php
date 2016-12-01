@@ -15,8 +15,8 @@
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../index.html'" >Home</a></li>
-        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
+        <li><a onclick="location.href="home.php >Home</a></li>
+        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
         <li><a onclick="location.href='home.php'">Subscriptions</a></li>
         <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
@@ -61,7 +61,7 @@
 echo <<<_END
 		<form name = "addElectronic" method ="post" action ="addEvent.php">
 			<label>Type:</label><br>
-			<input type = "text" name = "type"><br>
+			<input type = "date" name = "type"><br>
 			<label>Date (YYYY-MM-DD):</label><br>
 			<input type = "text" name = "date"><br>
 			<label>Location:</label><br>

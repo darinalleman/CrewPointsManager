@@ -1,39 +1,6 @@
 <!DOCTYPE html>
 <?php
-	dbConnect();
-	function dbConnect()
-	{
-		$username = "webprog29";
-	     $servername = "webprog.cs.ship.edu";
-	     $username = "webprog29";
-		$password = "sweamare";
-	     $dbname = "webprog29";
-	            
-	     $conn = new mysqli($servername, $username, $password, $dbname);
-		displayTeams($conn);
-	}
-
-	function displayTeams($conn)
-	{
-		$sql = ("SELECT * FROM TEAMS");
-
-		if(!$result = $conn->query($sql))
-		{
-			die('Error running query!');
-		}
-		else
-		{
-			while($row = $result->fetch_assoc())
-			{
-				echo "<tr>";
-				echo "<td>".$row['name']."</td>";
-				echo "<td>".$row['teamPoints']."</td>";
-				echo "<td>".$row['teamColor']."</td>";
-				echo "<td>".$row['teamLeader']."</td>";
-				echo "</tr>";
-			}
-		}
-	}
+	require "../db_info/db.php";
 ?>
 <html lang="en">
 <head>
@@ -122,10 +89,17 @@
         </div>
       </div>
     </div>
-    <div class="footer-copyright">
+    <!--<div class="footer-copyright">-->
       <div class="container">
-      Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
+      	<div class="row">
+      		<div class="col 16 s12 grey-text text-lighten-3">
+      			Created by Andrew Corchado
+      		</div>
+      		<div class="col 14 offset-12 s12 grey-text text-lighten-3">
+      			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      		</div>
+      	</div>
+      <!--</div>-->
     </div>
   </footer>
 
