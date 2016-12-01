@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Subscriptions</title>
 
-  <!-- CSS  -->
+<!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 <body>
   <nav class="orange" role="navigation">
@@ -22,8 +21,8 @@
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='../events/home.php'" >Events</a></li>
         <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -36,7 +35,7 @@
         <br>
       <h4 class="header center blue-text">Subscriptions</h1>
       <div class="row center">
-        <h5 class="header col s12 light">Subscribe to our weekly email updates to stay in the loop about all crew events!</h5>
+        <h5 class="header col s12 light">Subscribe to our email updates to stay in the loop about all crew events!</h5>
       </div>
       <div class="row center">
         <div style="width:50%; margin:auto;">
@@ -81,25 +80,11 @@
     </div>
   </div>
 
-  <footer class="page-footer grey darken-3">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
+ 
 
-  <!--  Scripts-->
+<!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../js/materialize.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script src="../js/init.js"> </script>
   </body>
 </html>

@@ -7,26 +7,22 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/cipher-core.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 <body>
   <nav class="orange" role="navigation">
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='../events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='../events/home.php'" >Events</a></li>
         <li><a onclick="location.href='home.php'">Subscriptions</a></li>
         <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='../events/home.php'" >Events</a></li>
         <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -37,7 +33,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
-      <h4 class="header center blue-text">Subscriptions</h1>
+      <h4 class="header center blue-text">Subscribed!</h4>
       <div class="row center">
       <?php
 $id = $_GET['email'];
@@ -87,26 +83,10 @@ else {
     </div>
   </div>
   
-  <footer class="page-footer grey darken-3">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-  <script src="../js/materialize.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script src="../js/init.js"> </script>
   </body>
 </html>

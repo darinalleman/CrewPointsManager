@@ -11,20 +11,20 @@
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <nav class="red" role="navigation">
+  <nav class="orange" role="navigation">
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
         <li><a onclick="location.href='../index.html'" >Home</a></li>
-        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
+        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
+        <li><a onclick="location.href='home.php'">Subscriptions</a></li>
         <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='home.php'" >Events</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'" >Subscriptions</a></li>
+        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
+        <li><a onclick="location.href='events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -34,11 +34,11 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
-      <h4 class="header center blue-text">Events</h1>
-	      <div class = "row-center">
-		  <div style="width:50%; margin:auto;">
-			  <table class='centered' style="width:100%"><thead><tr><th>Event Type</th><th>Date</th><th>Location</th><th>Time</th><th>Points</th><th>Winner</th></tr></thead>
-		    <?php
+      <h4 class="header center blue-text">Remove an Event</h1>
+      
+      <div class="row center">
+        <div style="width:50%; margin:auto;">
+            <?php
 	            $username = "webprog29";
 	            $servername = "webprog.cs.ship.edu";
 	            $username = "webprog29";
@@ -53,6 +53,7 @@
 			  {
 			  	//opens a table tag, and creates a result set object from a database query. We can then fetch information from this result set object
 			  	//row by row to fill our table.
+				echo "<table><tr><th>Event Type</th><th>Date   </th><th>Location   </th><th>Time    </th><th>Pdoints</th></tr>";
 				$sql = ("SELECT* FROM EVENTS");
 				if(!$result = $conn->query($sql))
 				{
@@ -64,21 +65,28 @@
 				while($row = $result->fetch_assoc())
 				{
 					echo "<tr>";
-					echo "<td>$row[type]</td><td>$row[date]</td><td>$row[location]</td><td>$row[time]</td><td>$row[points]</td><td>$row[winner]</td>";
+					echo "<td>$row[type]</td><td>$row[date]</td><td>$row[location]</td><td>$row[time]</td><td>$row[points]</td>";
 					echo "</tr>";
 				}
-		
+			
+				echo "</table>";
 				$result->free();
 			}
 	          
 	       ?>
-			  </table>
-		  </div>
         </div>
-        <div class="row center">
-        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-black-text">Add Event</a>
-        <a href="editteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Event</a>
-        <a href="removeteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Event</a><br>
+        
+        <?php
+	        //checks to see if the user is logged in. 
+		 	if(session_status() == PHP_SESSION_ACTIVE)   
+		 	{
+			 	echo "logged in";
+		 	}
+		 	else
+		 	{
+			 	echo "not logged in";
+		 	} 
+		 ?>
       </div>
       <br><br>
 

@@ -1,0 +1,12 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+
+     // Whether php validation is enabled or not.
+    "php.validate.enable": true,
+
+    // Points to the php executable.
+    "php.validate.executablePath": "/etc/php/7.0/cli/php.ini",
+
+    // Whether the linter is run on save or on type.
+    "php.validate.run": "onSave"
+}

@@ -11,20 +11,20 @@
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <nav class="red" role="navigation">
+  <nav class="orange" role="navigation">
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
         <li><a onclick="location.href='../index.html'" >Home</a></li>
-        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
+        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
+        <li><a onclick="location.href='home.php'">Subscriptions</a></li>
         <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='home.php'" >Events</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'" >Subscriptions</a></li>
+        <li><a onclick="location.href='teams/home.html'" >Teams</a></li>
+        <li><a onclick="location.href='events/home.html'" >Events</a></li>
+        <li><a onclick="location.href='home.php'" >Subscriptions</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -34,11 +34,18 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
-      <h4 class="header center blue-text">Events</h1>
-	      <div class = "row-center">
-		  <div style="width:50%; margin:auto;">
-			  <table class='centered' style="width:100%"><thead><tr><th>Event Type</th><th>Date</th><th>Location</th><th>Time</th><th>Points</th><th>Winner</th></tr></thead>
-		    <?php
+      <h4 class="header center blue-text">Edit An Event</h1>
+      
+      <div class="row center">
+        <div style="width:50%; margin:auto;">
+            <?php
+	            
+	            if(isset($_POST['type'])) $type = $_POST['type'];
+				if(isset($_POST['date']))$date = $_POST['date'];
+				if(isset($_POST['location'])) $location = $_POST['location'];
+				if(isset($_POST['time'])) $time = $_POST['time'];
+				if(isset($_POST['points'])) $points = $_POST['points'];
+	            
 	            $username = "webprog29";
 	            $servername = "webprog.cs.ship.edu";
 	            $username = "webprog29";
@@ -46,39 +53,41 @@
 	            $dbname = "webprog29";
 	            
 	          	$conn = new mysqli($servername, $username, $password, $dbname);
+echo <<<_END
+		<form name = "addElectronic" method ="post" action ="editEvent.php">
+			<label>Type:</label><br>
+			<input type = "text" name = "type"><br>
+			<label>Date:</label><br>
+			<input type = "text" name = "date"><br>
+			<label>Location:</label><br>
+			<input type = "text" name ="location"><br>
+			<label>Time:</label><br>
+			<input type = "text" name = "time"><br>
+			<label>points:</label><br>
+			<input type ="text" name = "points"</label><br><br>
+			<button type = "submit">submit</button>
+		</form>
+_END;
 	            
-	            
-	            displayEvents($conn);	          
-	          function displayEvents($conn)
-			  {
-			  	//opens a table tag, and creates a result set object from a database query. We can then fetch information from this result set object
-			  	//row by row to fill our table.
-				$sql = ("SELECT* FROM EVENTS");
-				if(!$result = $conn->query($sql))
-				{
-					die('error running the query');
-			
-				}
-				//fetches each row of the result set into an associative array
-				//until there are no rows left
-				while($row = $result->fetch_assoc())
-				{
-					echo "<tr>";
-					echo "<td>$row[type]</td><td>$row[date]</td><td>$row[location]</td><td>$row[time]</td><td>$row[points]</td><td>$row[winner]</td>";
-					echo "</tr>";
-				}
-		
-				$result->free();
-			}
+	          
+	           
+	           
+	
 	          
 	       ?>
-			  </table>
-		  </div>
         </div>
-        <div class="row center">
-        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-black-text">Add Event</a>
-        <a href="editteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Event</a>
-        <a href="removeteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Event</a><br>
+        
+        <?php
+	        //checks to see if the user is logged in. 
+		 	if(session_status() == PHP_SESSION_ACTIVE)   
+		 	{
+			 	echo "logged in";
+		 	}
+		 	else
+		 	{
+			 	echo "not logged in";
+		 	} 
+		 ?>
       </div>
       <br><br>
 
