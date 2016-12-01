@@ -3,11 +3,13 @@
   require_once('functions.php');
   secureSession();
 
-  if( !isLoggedIn() )
+  if(!isLoggedIn())
   {
-    echo '<li><a onclick=location.href="/webprog29/users/login_page.php"><i class="material-icons left">account_circle</i>Log In</a></li>';
+    $location = 'location.href="/webprog29/users/login_page.php"';
+    echo '<li><a onclick='.$location.'><i class="material-icons left">account_circle</i>Log In</a></li>';
   } else
   {
-    echo '<li><a onclick="location.href="/webprog29/users/home.php""><i class="material-icons left">account_circle</i>Profile</a></li>';
+    $location = 'location.href="/webprog29/users/home.php"';
+    echo '<li><a onclick='.$location.'><i class="material-icons left">account_circle</i>Log In</a></li>';
   }
 ?>
