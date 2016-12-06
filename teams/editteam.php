@@ -14,7 +14,7 @@
   <nav class="#b71c1c green"  role="navigation">
     <div style="width:100%" class="nav-wrapper container"><a id="logo-container" href="../" class="brand-logo"><img src=../Ship_logo.png></a>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../index.html'" >Home</a></li>
+        <li><a onclick="location.href='../index.php'" >Home</a></li>
         <li><a onclick="location.href='../events/home.php'" >Events</a></li>
         <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
         <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
@@ -27,10 +27,44 @@
     </div>
   </nav>
   
-  <h4 class="center-align teal-text">Please enter new team details: </h4>
-  
+  <div class="row">
+  <div class="col s3">
+  	
+  <br><p><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Choose Team</a></p>
+
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#NullPointer">Null Pointer</a></li>
+    <li class="divider"></li>
+    <li><a href="#OffByOne">Off By One</a></li>
+    <li class="divider"></li>
+    <li><a href="#OutOfBounds">Out Of Bounds</a></li>
+  </ul>
+  </div>
+  </div>
+  <?php
+  	require '../db_info/db.php';
+  	
+  	function _get_post($conn, $var)
+  	{
+  		return $conn->real_escape_string($_POST[$var]);
+  	}
+  	
+  	if(isset($_POST['teamName']) &&
+  	   isset($_POST['teamLeader']) &&
+  	   isset($_POST['teamColor']) &&
+  	   isset($_POST['teamPoints']))
+  	{
+  		$query = $conn->prepare("INSERT INTO TEAMS (teamName, teamLeader, teamColor, teamPoints) Values (?, ?, ?, ?)");
+          $query->bind_param("ssssi", $teamName, $teamLeader, $teamColor, $teamPoints);
+          $teamName = _get_post($conn, 'teamName');
+          $teamLeader = _get_post($conn, 'teamLeader');
+          $teamColor = _get_post($conn, 'teamColor');
+          $teamPoints= _get_post($conn, 'teamPoints');
+          $result = $query->execute();
+  	}
+  ?>
   <div class="row center">
-    <form class="col s12">
+    <form class="col s12" onsubmit="return validate(this)" method="post">
       <div class="row">
         <div class="input-field inline">
           <input id="team_name" type="text" class="validate">
@@ -66,7 +100,7 @@
         </div>
       </div>
       <br><br>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Create Team
+      <button class="btn waves-effect waves-light" type="submit" name="edit">Save Changes
     		<i class="material-icons right">send</i>
   	 </button>
    </form>
@@ -76,15 +110,18 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
         </div>
       </div>
     </div>
-    <div class="footer-copyright">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
+      	<div class="row">
+      		<div class="col 16 s12 grey-text text-lighten-3">
+      			Created by Andrew Corchado
+      		</div>
+      		<div class="col 14 offset-12 s12 grey-text text-lighten-3">
+      			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      		</div>
+      	</div>
     </div>
   </footer>
 

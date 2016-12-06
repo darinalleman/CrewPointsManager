@@ -12,16 +12,21 @@
 </head>
 <body>
   <nav class="#b71c1c green"  role="navigation">
-    <div style="width:100%" class="nav-wrapper container"><a id="logo-container" href="../" class="brand-logo"><img src=../Ship_logo.png></a>
+    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
+         href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../index.html'" >Home</a></li>
-        <li><a onclick="location.href='../events/home.php'" >Events</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
-        <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <hr>
+        <?php require_once('../users/setProfileLinkMobile.php');?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -59,6 +64,6 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="../js/materialize.js"></script>
-
+  <script src="../js/init.js"> </script>
   </body>
 </html>

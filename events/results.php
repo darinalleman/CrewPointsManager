@@ -15,7 +15,7 @@
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
-	    <li><a onclick="location.href='../index.php'" >Home</a></li>
+	    <li><a onclick="location.href="home.php >Home</a></li>
         <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
         <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
         <?php require_once('../users/setProfileLink.php'); ?>
@@ -34,63 +34,40 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center teal-text">Remove an Event</h1>
+      <h1 class="header center teal-text">Results</h1>
       <div class="row center">
       	<table class="bordered" style="width:100%">
             <thead>
               <tr>
-                <th data-field="event">Event</th>
-                <th data-field="location">Location</th>
-                <th data-field="date">Date (YYYY-MM-DD)</th>
-                <th data-field="time">Time</th>
-                <th data-field="points">Points</th>
+                <th data-field="event">Date</th>
+                <th data-field="location">Event</th>
+                <th data-field="date">Winner</th>
               </tr>
             </thead>
             <tbody>
               <?php
               		require '../db_info/db.php';
-              		$query = "SELECT * FROM EVENTS ORDER BY event_date";
+              		$query = "SELECT event_date, event, name FROM EVENTS e, RESULTS r, TEAMS t WHERE r.event_id = e.id AND r.winner_id = t.id AND event_date < CURDATE() ORDER BY event_date";
               		$result = $conn->query($query);
 
               		while($row = mysqli_fetch_array($result))
               		{
               			echo "<tr>";
-              			echo "<td>".$row['event']."</td>";
-              			echo "<td>".$row['location']."</td>";
               			echo "<td>".$row['event_date']."</td>";
-              			echo "<td>".$row['event_time']."</td>";
-              			echo "<td>".$row['points']."</td>";
+              			echo "<td>".$row['event']."</td>";
+              			echo "<td>".$row['name']."</td>";
               			echo "</tr>";
               		}
-              		
-              		if(isset($_POST['event']) && isset($_POST['date']))
-              		{
-	              		$date = $_POST['date'];
-	              		$event = $_POST['event'];
-	              	
-				  		$query =("DELETE FROM EVENTS WHERE event = '$event' AND event_date = '$date'");
-				  		$conn->query($query);
-				  		header('Location: ../events/home.php');
-              		}	              	
-	              	              		
-              		
               ?>
-			</tbody>
+
+            </tbody>
           </table>
       </div>
-
-      <div class = "center">
-	   <h5 class="header center teal-text">Remove an Event</h1>
-	   <form method = "post" action = "removeEvent.php">
-		<label name = "event">Event</label>
-		<input name = "event" type = "text">
-		<label name = "date">Date</label>   
-		<input name = "date" type = "text">
-		<input class = "btn-large" value = "submit" type = "submit">
-		   
-	   </form>
-	   </div>
- 
+      <div class="row center">
+        <a href="home.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled<?php } ?> waves-effect waves-light teal lighten-2 black-text">Go Back</a>
+      </div>
+     
+      </div>
       <br><br>
 	  
     </div>

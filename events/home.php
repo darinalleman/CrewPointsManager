@@ -3,109 +3,116 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Subscriptions</title>
+  <title>2016-2017 Crew Points Tracker</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <nav class="red" role="navigation">
-    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container" 
+  <nav class="red"  role="navigation">
+    <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../index.html'" >Home</a></li>
-        <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
-        <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
+	    <li><a onclick="location.href='../index.php'" >Home</a></li>
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='../teams/home.html'" >Teams</a></li>
-        <li><a onclick="location.href='home.php'" >Events</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'" >Subscriptions</a></li>
+	    <li><a onclick="location.href="home.php >Home</a></li>
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <hr>
+        <?php require_once('../users/setProfileLinkMobile.php');?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
-
   <div class="section no-pad-bot" id="index-banner">
-    <div class="container" style="height:100%">
-        <br>
-      <h4 class="header center blue-text">Events</h1>
-	      <div class = "row-center">
-		  <div style="width:50%; margin:auto;">
-			  <table class='centered' style="width:100%"><thead><tr><th>Event Type</th><th>Location</th><th>Date</th><th>Time</th><th>Points</th><th>Winner</th></tr></thead>
-		    <?php
-	            $username = "webprog29";
-	            $servername = "webprog.cs.ship.edu";
-	            $username = "webprog29";
-	            $password = "sweamare";
-	            $dbname = "webprog29";
-	            
-	          	$conn = new mysqli($servername, $username, $password, $dbname);
-	            
-	            
-	            displayEvents($conn);	          
-	          function displayEvents($conn)
-			  {
-			  	//opens a table tag, and creates a result set object from a database query. We can then fetch information from this result set object
-			  	//row by row to fill our table.
-				$sql = ("SELECT* FROM EVENTS");
-				if(!$result = $conn->query($sql))
-				{
-					die('error running the query');
-			
-				}
-				//fetches each row of the result set into an associative array
-				//until there are no rows left
-				while($row = $result->fetch_assoc())
-				{
-					echo "<tr>";
-					echo "<td>$row[event_type]</td><td>$row[event_location]</td><td>$row[event_date]</td><td>$row[event_time]</td><td>$row[event_points]</td><td>$row[event_winner]</td>";
-					echo "</tr>";
-				}
-		
-				$result->free();
-			}
-	          
-	       ?>
-			  </table>
-		  </div>
-        </div>
-        <div class="row center">
-        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-black-text">Add Event</a>
-        <a href="editteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Event</a>
-        <a href="removeteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Event</a><br>
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text">Upcoming Events</h1>
+      <div class="row center">
+      	<table class="bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th data-field="event">Event</th>
+                <th data-field="location">Location</th>
+                <th data-field="date">Date (YYYY-MM-DD)</th>
+                <th data-field="time">Time</th>
+                <th data-field="points">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              		require '../db_info/db.php';
+              		$query = "SELECT * FROM EVENTS WHERE event_date > CURDATE() ORDER BY event_date";
+              		$result = $conn->query($query);
+
+              		while($row = mysqli_fetch_array($result))
+              		{
+              			echo "<tr>";
+              			echo "<td>".$row['event']."</td>";
+              			echo "<td>".$row['location']."</td>";
+              			echo "<td>".$row['event_date']."</td>";
+              			echo "<td>".$row['event_time']."</td>";
+              			echo "<td>".$row['points']."</td>";
+              			echo "</tr>";
+              		}
+              ?>
+
+            </tbody>
+          </table>
+      </div>
+      <div class="row center">
+        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled<?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Event</a>
+        <a href="editEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Event</a>
+        <a href="removeEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Event</a><br>
+      </div>
+      <div class="row center" >
+	  <a href="results.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-2 black-text">See Results</a><br>
+      </div>
       </div>
       <br><br>
+	  
+    </div>
+
+  <div class="container">
+    <div class="section">
+
+      </div>
 
     </div>
-  </div>
 
-  <footer class="page-footer grey darken-3">
+  <footer class="page-footer light-blue darken-2">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
         </div>
       </div>
     </div>
-    <div class="footer-copyright">
+    <!--<div class="footer-copyright">-->
       <div class="container">
-      Made by <a class="grey-text text-lighten-3" href="http://materializecss.com"></a>
-      </div>
+      	<div class="row">
+      		<div class="col 16 s12 grey-text text-lighten-3">
+      			Ryan Handley
+      		</div>
+      		<div class="col 14 offset-12 s12 grey-text text-lighten-3">
+      			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      		</div>
+      	</div>
+      <!--</div>-->
     </div>
   </footer>
 
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../js/materialize.js"></script>
-  <script src="../js/init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script src="../js/init.js"> </script>
 
   </body>
 </html>

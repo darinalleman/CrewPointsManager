@@ -14,10 +14,10 @@
   <nav class="#b71c1c green"  role="navigation">
     <div style="width:100%" class="nav-wrapper container"><a id="logo-container" href="../" class="brand-logo"><img src=../Ship_logo.png></a>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../index.html'" >Home</a></li>
+        <li><a onclick="location.href='../index.php'" >Home</a></li>
         <li><a onclick="location.href='../events/home.php'" >Events</a></li>
         <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
-        <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
+        <li><a href="../users/home.php"><i class="material-icons left">account_circle</i>Profile</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -45,42 +45,35 @@
               		require '../db_info/db.php';
               		$query = "SELECT * FROM TEAMS";
               		$result = $conn->query($query);
-              		
+              		$npPointsQuery = "SELECT SUM(points) AS points FROM EVENTS e, RESULTS r, TEAMS t where r.id = e.id and r.winner_id = t.id and t.name = 'Null Pointer'";
+              		$npPointsResult = $conn->query($npPointsQuery);
+
               		while($row = mysqli_fetch_array($result))
               		{
               			echo "<tr>";
               			echo "<td>".$row['name']."</td>";
               			echo "<td>".$row['teamLeader']."</td>";
               			echo "<td>".$row['teamColor']."</td>";
-              			echo "<td>".$row['teamPoints']."</td>";
-              			echo "</tr>";
+              			$nameString = $row['name'];
+              			$npPointsQuery = "SELECT SUM(points) AS points FROM EVENTS e, RESULTS r, TEAMS t where r.event_id = e.id and r.winner_id = t.id and t.name = '$nameString'";
+			  			      $npPointsResult = $conn->query($npPointsQuery);
+
+			  		        while($row2 = mysqli_fetch_array($npPointsResult))
+			  		        {
+              				echo "<td>".$row2['points']."</td>";
+              				echo "</tr>";
+              			}
+
               		}
+
               ?>
-              <!--<tr>-->
-              <!--  <td>Null Pointer</td>-->
-              <!--  <td>5000000</td>-->
-              <!--  <td>Red</td>-->
-              <!--  <td>Dr. Girard</td>-->
-              <!--</tr>-->
-              <!--<tr>-->
-              <!--	 <td>Off By One</td>-->
-              <!--	 <td>1</td>-->
-              <!--	 <td>Blue</td>-->
-              <!--	 <td>Dr. Armstrong</td>-->
-              <!--</tr>-->
-              <!--<tr>-->
-              <!--	 <td>Out Of Bounds</td>-->
-              <!--	 <td>0</td>-->
-              <!--	 <td>Green</td>-->
-              <!--	 <td>Dr. Wellington</td>-->
-              <!--</tr>-->
             </tbody>
           </table>
       </div>
       <div class="row center">
-        <a href="addteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Team</a>
-        <a href="editteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Team</a>
-        <a href="removeteam.html" id="download-button" class="btn-large <?php if(!$loggedin){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Team</a><br>
+        <a href="addteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Team</a>
+        <a href="editteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Team</a>
+        <a href="removeteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Team</a><br>
       </div>
       </div>
       <br><br>
@@ -101,7 +94,6 @@
         </div>
       </div>
     </div>
-    <!--<div class="footer-copyright">-->
       <div class="container">
       	<div class="row">
       		<div class="col 16 s12 grey-text text-lighten-3">
@@ -111,7 +103,6 @@
       			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       		</div>
       	</div>
-      <!--</div>-->
     </div>
   </footer>
 

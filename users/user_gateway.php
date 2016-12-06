@@ -1,5 +1,8 @@
 <?php
-  // Nick Martinez - Final Project 
+  // Nick Martinez - Final Project
+  // This is a table data gateway for the User table in the webprog29
+  // database. It supports normal CRUD functions.
+  require_once('../db_info/config.php');
 
   /**
    * Establishes a database connection.
@@ -7,7 +10,10 @@
    */
   function getConnection() {
     try {
-      $db_handle = new PDO("sqlite:Test.db");
+      $db_host = 'webprog.cs.ship.edu';
+      $db = 'webprog29';
+      $db_handle = new PDO("mysql:host=$db_host;dbname=$db", $usernameStored,
+        $passwordStored);
       $db_handle->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     } catch(PDOException $e) {
       echo $e->getMessage();
@@ -23,9 +29,10 @@
     try {
         $db_handle = getConnection();
         $sql = "CREATE TABLE User (
-          user_id int NOT NULL PRIMARY KEY AUTOINCREMENT,
+          id int NOT NULL PRIMARY KEY AUTOINCREMENT,
           email VARCHAR(128) NOT NULL,
-          password VARCHAR(128) NOT NULL
+          password VARCHAR(128) NOT NULL,
+          team VARCHAR(128) NOT NULL,
         )";
         $db_handle->exec($sql);
         $db_handle = null;

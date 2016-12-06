@@ -40,20 +40,41 @@
       <h4 class="header center orange-text">Current Standings</h4>
       <div class="row center">
          <table class="centered" style="width:100%">
-            <thead>
-              <tr>
-                <th data-field="id">Out Of Bounds</th>
-                <th data-field="name">Off By One</th>
-                <th data-field="price">Null Pointer</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>300</td>
-                <td>100</td>
-                <td>50</td>
-              </tr>
-            </tbody>
+           <?php
+              require_once './db_info/db.php';
+
+              $query = "SELECT * FROM TEAMS";
+              $result = $conn->query($query);
+              //$npPointsQuery = "SELECT SUM(points) AS points FROM EVENTS e, RESULTS r, TEAMS t where r.id = e.id and r.winner_id = t.id and t.name = 'Null Pointer'";
+              //$npPointsResult = $conn->query($npPointsQuery);
+              echo "<thead><tr>";
+              while($row = mysqli_fetch_array($result))
+              {
+                echo "<th>".$row['name']."</th>";
+              }
+              echo "</tr></thead>";
+              echo "<tbody><tr>";
+              $result = $conn->query($query);
+              while($row = mysqli_fetch_array($result))
+              {
+                $nameString = $row['name'];
+                echo $nameString;
+                $npPointsQuery = "SELECT SUM(points) AS points FROM EVENTS e, RESULTS r, TEAMS t where r.event_id = e.id and r.winner_id = t.id and t.name = '$nameString'";
+                $npPointsResult = $conn->query($npPointsQuery);
+
+                while($row2 = mysqli_fetch_array($npPointsResult))
+                {
+                  if ($row2['points'] == null)
+                  {
+                    echo "<td>0</td>";
+                  }
+                  else{
+                    echo "<td>".$row2['points']."</td>";
+                  }
+                }
+              }
+              echo "</tr></tbody>";
+            ?>
           </table>
       </div>
       <br><br><br><br>
