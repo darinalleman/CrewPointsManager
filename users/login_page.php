@@ -37,7 +37,7 @@
       <h4 class="header center blue-text">Login</h1>
       <div class="row center">
         <div style="width:50%; margin:auto;">
-          <form method="post" action="login.php" class="col s12">
+          <form method="post" class="col s12">
             <div class="row">
               <div class="input-field col s12">
                 <input placeholder="Email" id="email" type="email" class="validate">
@@ -49,6 +49,9 @@
               </div>
             </div>
             <br /><br />
+            <?php
+              require_once 'login.php';
+            ?>
             <button class="btn waves-effect waves-light" type="submit" name="action">Login
             </button>
           </form>

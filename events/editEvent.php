@@ -46,9 +46,9 @@
             }
             if(isset($_POST['eventField']))
             {
-	            
-	            echo "<form>
-	            		<select name = 'editData'>
+	            echo "What would you like to edit";
+	            echo "<form method = 'POST' action = 'editEvent.php' name = 'edit'>
+	            		<select name = 'edit'>
 	            		  <option>event_time</option>
 	            		  <option>points</option>
 	            		  <option>location</option>
@@ -56,8 +56,27 @@
 	            		<button type = 'submit'>Submit</button>
 	            	  </form>";
 	            	  
-	          
-            }
+	       }
+	       if(isset($_POST['edit']))
+	       {
+		       echo "enter value";
+		       echo "<form method = 'POST' action = 'editEvent.php' name = 'input'>
+		       		 <input type = 'text'>
+		       		 <button type = 'submit'>Submit</button>
+		       		 </form>";
+		       
+	       }
+	       if(isset($_POST['dateField']) && isset($_POST['eventField']) && isset($_POST['edit']) && isset($_POST['input']))
+	       {
+		       $date = strtolower($_POST['dateField']);
+		       $event = strtolower($_POST['eventField']);
+		       $fieldToEdit = strtolower($_POST['edit']);
+		       $changeValue = strtolower($_POST['input']);
+		       echo"yeah";
+		       
+		       $editQuery = "UPDATE EVENTS SET $fieldToEdit = $changeValue WHERE event_date = $date and event = $event";
+		       $conn->query($editQuery);
+	       }
              ?>		
 	</body>
 	<a href=home.php>go home </a>

@@ -9,13 +9,17 @@
 
   if( !validateEmail($safe_email)
   {
-    // TODO: Inform the user that the email was invalid.
+    $message = "Email not valid. Please enter a valid email.";
+    echo("<script type='text/javascript'>alert($message);</script>");
     header('Location:add_user.php');
   }
 
   if( !validateEmail($password) )
   {
-    // TODO: Inform the user that the password was invalid.
+    $message = "Password not valid. Please enter a valid password. A valid
+      password consists of between 6 and 10 alphanumeric characters, at least
+      one capital letter, and at least one digit.";
+    echo("<script type='text/javascript'>alert($message);</script>");
     header('Location:add_user.php');
   }
 
@@ -23,7 +27,7 @@
   // insert the new user data into the database. Reminder that PDO sanitizes
   // the strings for us.
   insertUser($safe_email, $password);
-  // TODO: Inform the user that the new user was successfully created!
+  
   header('Location:home.php');
 ?>
 
@@ -56,7 +60,7 @@
       </div>
     </nav>
 
-		<form method ="post" action="add_user.php" onsubmit = "return validateAll(this);">
+		<form method ="post" action="add_user.php" >
 			<label>email:</label><br>
 			<input type = "text" id ="email" name = "email"
         placeholder="example@gmail.com"><br>

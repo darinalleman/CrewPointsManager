@@ -32,7 +32,8 @@
           id int NOT NULL PRIMARY KEY AUTOINCREMENT,
           email VARCHAR(128) NOT NULL,
           password VARCHAR(128) NOT NULL,
-          team VARCHAR(128) NOT NULL,
+          team int NOT NULL,
+          FOREIGN KEY (team) REFERENCES TEAMS(id)
         )";
         $db_handle->exec($sql);
         $db_handle = null;
@@ -44,12 +45,12 @@
   /**
    * Inserts a row into the User table.
    */
-  function insertUser($email, $password) {
+  function insertUser($email, $password, $team) {
     try {
       $db_handle = getConnection();
-      $stmt = $db_handle->prepare("INSERT INTO User (email, password)
-        VALUES (:email, :password)");
-      $data = array('email' => $email, 'password' => $password);
+      $stmt = $db_handle->prepare("INSERT INTO User (email, password, team)
+        VALUES (:email, :password, :team)");
+      $data = array('email' => $email, 'password' => $password, 'team' => $team);
       $stmt->execute($data);
       $db_handle = null;
     } catch(PDOException $e) {

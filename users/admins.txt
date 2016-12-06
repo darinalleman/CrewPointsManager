@@ -1,0 +1,15 @@
+Dr. Lee
+  email: lee@webprog.com
+  password: Professor1
+
+Dr. Girard
+  email: girard@webprog.com
+  password: Professor2
+
+Dr. Armstrong
+  email: armstrong@webprog.com
+  password: Professor3
+
+Dr. Wellington
+  email: wellington@webprog.com
+  password: Professor4

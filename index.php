@@ -45,8 +45,6 @@
 
               $query = "SELECT * FROM TEAMS";
               $result = $conn->query($query);
-              //$npPointsQuery = "SELECT SUM(points) AS points FROM EVENTS e, RESULTS r, TEAMS t where r.id = e.id and r.winner_id = t.id and t.name = 'Null Pointer'";
-              //$npPointsResult = $conn->query($npPointsQuery);
               echo "<thead><tr>";
               while($row = mysqli_fetch_array($result))
               {
@@ -58,7 +56,6 @@
               while($row = mysqli_fetch_array($result))
               {
                 $nameString = $row['name'];
-                echo $nameString;
                 $npPointsQuery = "SELECT SUM(points) AS points FROM EVENTS e, RESULTS r, TEAMS t where r.event_id = e.id and r.winner_id = t.id and t.name = '$nameString'";
                 $npPointsResult = $conn->query($npPointsQuery);
 

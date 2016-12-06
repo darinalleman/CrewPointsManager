@@ -120,6 +120,7 @@
 			include '../subscriptions/sendNewEventEmail.php';
 		 	$stmt = $conn->prepare("INSERT INTO EVENTS(event, location, event_date, event_time, points) VALUES(?,?,?,?,?)");
 		 	$stmt->bind_param('ssssi', $event, $location, $event_date, $event_time, $points);
+			sendEventEmail($event, $event_date, $location, $event_time, $points);
 		 	if(!$stmt->execute())
 		 	{
 			 	$message = "form did not submit!";
@@ -127,7 +128,7 @@
 		 	}
 		 	else
 		 	{
-		 		sendEventEmail($event, $event_date, $location, $event_time, $points);
+		 		
 		 		header('Location: ../events/home.php');
 		 	}
 
@@ -177,7 +178,7 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <script src="../js/init.js"></script>
 
   </body>

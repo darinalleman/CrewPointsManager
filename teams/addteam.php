@@ -30,7 +30,7 @@
   <h4 class="center-align teal-text">Please enter new team details: </h4>
   
   <div class="row center">
-        <div style="width:50%; margin:auto;">
+     <div style="width:50%; margin:auto;">
   	<?php
 
 		function sanitize($data)
@@ -57,58 +57,17 @@
 	?>
 	
 	<form method ="post" action="addteam.php" onsubmit = "return validateAll(this);">
-			<label>Team Name:</label><br>
-			<input type = "text" id ="name" name = "name"><br>
-			<label>Team Leader:</label><br>
-			<input type = "text" id = "team_leader" name = "team_leader"><br>
-			<label>Team Color:</label><br>
-			<input type = "text" id = "team_color" name ="team_color"><br>
-			<label>Points:</label><br>
-			<input type = "text" id = "team_points" name = "team_points"><br>
+		<label>Team Name:</label><br>
+		<input type = "text" id ="name" name = "name"><br>
+		<label>Team Leader:</label><br>
+		<input type = "text" id = "team_leader" name = "team_leader"><br>
+		<label>Team Color:</label><br>
+		<input type = "text" id = "team_color" name ="team_color"><br>
+		<label>Points:</label><br>
+		<input type = "text" id = "team_points" name = "team_points"><br>
 
-			<button class="btn waves-effect waves-light" type = "submit">Create Team</button>
-		</form>
-	
-   <!-- <form action='addteam.php' method='post' class="col s12" onsubmit="return validate(this)">-->
-   <!--   <div class="row">-->
-   <!--     <div class="input-field inline">-->
-   <!--       <input id="name" type="text" >-->
-   <!--       <label for="team_name">Team Name</label>-->
-   <!--     </div>-->
-   <!--   </div>-->
-   <!--   <div class="row">-->
-   <!--     <div class="input-field inline">-->
-   <!--       <input id="team_leader" type="text" class="validate">-->
-   <!--       <label for="team_leader">Team Leader</label>-->
-   <!--     </div>-->
-   <!--   </div>-->
-   <!--   <div class="row">-->
-   <!--     <div class="input-field inline">-->
-   <!--     	<input id="team_color" type="text" class="validate">-->
-   <!--       <label for="team_color">Team Color</label>-->
-   <!--     </div>-->
-   <!--   </div>-->
-   <!--   <div class="row">-->
-   <!--     <div class="input-field inline">-->
-   <!--       <input id="team_points" type="number" class="validate">-->
-   <!--       <label for="team_points">Team Points</label>-->
-   <!--     </div>-->
-   <!--   </div>-->
-   <!--   <div class="file-field input-field inline">-->
-   <!--     <div class="btn">-->
-   <!--     	<span>File</span>-->
-   <!--     	<input type="file">-->
-   <!--     </div>-->
-   <!--     <div class="file-path-wrapper">-->
-   <!--       <input class="file-path validate" type="text">-->
-   <!--       <label for="team_logo">Team Logo</label>-->
-   <!--     </div>-->
-   <!--   </div>-->
-   <!--   <br><br>-->
-   <!--   <button class="btn waves-effect waves-light" type="submit">Create Team-->
-   <!-- 		<i class="material-icons right">send</i>-->
-  	<!-- </button>-->
-   <!--</form>-->
+		<button class="btn waves-effect waves-light" type = "submit">Create Team</button>
+	</form>
  </div>
 
 <footer class="page-footer light-blue darken-2">
@@ -133,7 +92,7 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <script>
   	function validate(form)
      {
