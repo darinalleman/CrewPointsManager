@@ -14,9 +14,9 @@
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
          href="../" class="brand-logo"><img src=../Ship_logo.png>
       <ul class="right hide-on-med-and-down">
+        <li><a onclick="location.href='/webprog29/'" >Home</a></li>
         <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
-        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
-        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'">Events</a></li>
         <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
