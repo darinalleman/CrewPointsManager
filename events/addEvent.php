@@ -148,8 +148,8 @@
 							";
 		
 							
-							//mail($email, "$subject", $body, "From:" . $admin_email);
-								$conn->close();
+							mail($email, "$subject", $body, "From:" . $admin_email);
+							$conn->close();
 								
 							
 					}

@@ -35,7 +35,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center teal-text">Results</h1>
+      <h4 class="header center teal-text">Results</h4>
       <div class="row center">
       	<table class="bordered" style="width:100%">
             <thead>

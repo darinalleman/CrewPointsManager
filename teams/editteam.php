@@ -20,12 +20,8 @@
         <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
- 			<ul id="nav-mobile" class="side-nav">
-        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
-        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
-        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
-        <hr>
-        <?php require_once('../users/setProfileLinkMobile.php');?>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -39,7 +35,7 @@
   <div class="input-field col s12">
     <select id="dropdown1">
 			 <option value=""  selected>Choose a team to edit</option>
-			<?php
+	<?php
   		require '../db_info/db.php';
   		$query = "SELECT * FROM TEAMS";
   		$result =  mysqli_query($conn, $query);
@@ -64,26 +60,26 @@
 </div>
 </div>
 <?php
-
 	if (isset($_GET['teamName']))
-			{
-				$id = $_GET['teamName'];
+	{
+		$id = $_GET['teamName'];
 
-					if($id) {
-							for ($i = 0; $i < sizeof($teamData); $i++)
-							{
-								if ($id == $teamData[$i][0])
-								{
-									$teamNameToSet = $teamData[$i][0];
-									$teamLeaderToSet  = $teamData[$i][1];
-									$teamColorToSet = $teamData[$i][2];
-									$teamPointsToSet = $teamData[$i][3];
-									$teamIdSetting = $teamData[$i][4];
-								}
-							}
-					}
+		if($id)
+		{
+			for ($i = 0; $i < sizeof($teamData); $i++)
+			{
+				if ($id == $teamData[$i][0])
+				{
+					$teamNameToSet = $teamData[$i][0];
+					$teamLeaderToSet  = $teamData[$i][1];
+					$teamColorToSet = $teamData[$i][2];
+					$teamPointsToSet = $teamData[$i][3];
+					$teamIdSetting = $teamData[$i][4];
+				}
 			}
-	?>
+		}
+	}
+?>
 
   <?php
   	require '../db_info/db.php';
@@ -117,13 +113,13 @@
 
   <form method ="post" action="editteam.php" onsubmit = "return validateAll(this);">
 	<label>Team Name:</label><br>
-	<input type = "text" id ="name" name = "name" value = "<?php echo $teamNameToSet; ?>"><br>
+	<input type = "text" id ="name" name = "name" value = "<?php echo $teamNameToSet; ?>" class="validate"><br>
 	<label>Team Leader:</label><br>
-	<input type = "text" id = "team_leader" name = "team_leader"value = "<?php echo $teamLeaderToSet; ?>"><br>
+	<input type = "text" id = "team_leader" name = "team_leader"value = "<?php echo $teamLeaderToSet; ?>" class="validate"><br>
 	<label>Team Color:</label><br>
-	<input type = "text" id = "team_color" name ="team_color"value = "<?php echo $teamColorToSet; ?>"><br>
+	<input type = "text" id = "team_color" name ="team_color"value = "<?php echo $teamColorToSet; ?>" class="validate"><br>
 	<label>Points:</label><br>
-	<input type = "text" id = "team_points" name = "team_points" value = "<?php echo $teamPointsToSet; ?>"><br>
+	<input type = "number" id = "team_points" name = "team_points" value = "<?php echo $teamPointsToSet; ?>" class="validate"><br>
 	<input type="hidden" name="team_id" value = "<?php echo $teamIdSetting; ?>" />
 	<button class="btn waves-effect waves-light" type = "submit">Save Changes</button>
    </form>
@@ -160,11 +156,7 @@
   	});
   	$("#dropdown1").change(function() {
   		var selected = $("#dropdown1 option:selected").text();
-			if (selected != "Choose a team to edit")
-			{
-					window.location.href="editteam.php?teamName="+selected;
-			}
-  		
+  		window.location.href="editteam.php?teamName="+selected;
   	});
   </script>
 </body>

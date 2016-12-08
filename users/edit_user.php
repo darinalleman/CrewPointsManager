@@ -36,7 +36,9 @@
     
     <div class"row-center">
       <div style="width:50%; margin:auto;">
-      <h3 class="header center blue-text">Change Your Password</h3>
+        <br>
+        <br>
+      <h4 class="header center blue-text">Change Your Password</h4>
         <form name="password_change" method="post" action="edit_user.php" onsubmit="return validateForm()">
           <label>Current Password</label><br />
           <input type="text" id="current_password" name="current_password" /><br />

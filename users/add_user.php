@@ -76,7 +76,7 @@
     <div class="container" style="height:100%">
         <br>
       <div class="row center">
-        <h5 class="header col s12 light">Add a new user</h5>
+        <h4 class="header center blue-text">Add a new user</h4>
       </div>
       <div class="row center">
         <div style="width:50%; margin:auto;">
@@ -89,7 +89,7 @@
             placeholder="6-10 alphanumeric characters, >= 1 capital letter, >= 1 digit"><br />
           <a href="add_user.php" id="download-button" class="btn-large
           <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>
-              waves-effect waves-light teal lighten-2 black-text" type="submit">Add User!</a>
+              waves-effect waves-light teal lighten-2 white-text" type="submit">Add User!</a>
 	    	</form>
         </div>
       </div>

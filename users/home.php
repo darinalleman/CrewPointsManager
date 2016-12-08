@@ -36,6 +36,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
+        <br>
       <h4 class="header center blue-text">My Account</h1>
       <br>
       <br>
@@ -46,7 +47,7 @@
         waves-effect waves-light teal lighten-2 white-text">Add User</a><br><br>
       <a href="edit_user.php" id="download-button" class="btn-large
       <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>
-        waves-effect waves-light teal lighten-2 white-text">Edit Your Profile</a><br><br>
+        waves-effect waves-light teal lighten-2 white-text">Change Password</a><br><br>
         </div>
       <a href="logout.php" id="download-button" class="btn-large
       <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>

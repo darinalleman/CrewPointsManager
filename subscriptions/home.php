@@ -38,7 +38,8 @@ Author: Darin Alleman
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
-      <h4 class="header center blue-text">Subscriptions</h1>
+        <br>
+      <h4 class="header center blue-text">Subscriptions</h4>
 
         <br>
           <br>
