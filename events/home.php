@@ -101,7 +101,7 @@
       <div class="container">
       	<div class="row">
       		<div class="col 16 s12 grey-text text-lighten-3">
-      			Ryan Handley
+      			Created by Ryan Handley
       		</div>
       		<div class="col 14 offset-12 s12 grey-text text-lighten-3">
       			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>

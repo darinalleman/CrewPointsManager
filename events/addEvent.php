@@ -195,7 +195,7 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <p class="grey-text text-lighten-4">Ryan Handley</p>
+          <p class="grey-text text-lighten-4">Created by Ryan Handley</p>
         </div>
       </div>
     </div>
