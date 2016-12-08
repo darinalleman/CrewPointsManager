@@ -107,55 +107,61 @@
 				$event_time = sanitize($_POST['event_time']);
 				$points = sanitize($_POST['points']);
 			
-	
-				require '../db_info/db.php';
-				include '../subscriptions/sendNewEventEmail.php';
-			 	$stmt = $conn->prepare("INSERT INTO EVENTS(event, location, event_date, event_time, points) VALUES(?,?,?,?,?)");
-			 	$stmt->bind_param('ssssi', $event, $location, $event_date, $event_time, $points);
-			 	if(!$stmt->execute())
-			 	{
-				 	$message = "form did not submit!";
-				 	echo "<script type='text/javascript'>alert('$message');</script>";
-			 	}
-			 	else
-			 	{
-				 /** EMAIL Functionality written by Darin Alleman **/
-					$admin_email = "crews-no-reply@cs.ship.edu";
-					$subject = "New Event for Ship CS Crews!";
-					
-					$result = mysqli_query($conn,"SELECT * FROM SUBSCRIPTIONS;");
-					while ($row = mysqli_fetch_array($result))
-					{
-						$email = $row[0];
-						$crypt = openssl_encrypt($email, "aes-256-ctr", $key);
-						$body = "A new event has been created!
-	
-						Event: ".$event."
-						Location: ".$location."
-						Date: ".$event_date."
-						Time: ".$event_time."
-						Points up for grabs: ".$points."
-	
-						We hope to see you there!
+				if(preg_match('/^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/', $event_time) && preg_match('/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $event_date) && is_numeric($points))
+				{
+					require '../db_info/db.php';
+					include '../subscriptions/sendNewEventEmail.php';
+				 	$stmt = $conn->prepare("INSERT INTO EVENTS(event, location, event_date, event_time, points) VALUES(?,?,?,?,?)");
+				 	$stmt->bind_param('ssssi', $event, $location, $event_date, $event_time, $points);
+				 	if(!$stmt->execute())
+				 	{
+					 	$message = "form did not submit!";
+					 	echo "<script type='text/javascript'>alert('$message');</script>";
+				 	}
+				 	else
+				 	{
+					 /** EMAIL Functionality written by Darin Alleman **/
+						$admin_email = "crews-no-reply@cs.ship.edu";
+						$subject = "New Event for Ship CS Crews!";
 						
-						Note: This will be your only email reminder! Please remember to check on the website for changes.
-						
-						
-	
-						To unsubscribe from this list, click here: 
-						Unsubscribe: //webprog.cs.ship.edu/webprog29/subscriptions/unsub.php?email=".$crypt."
-						";
-	
-						
-						//mail($email, "$subject", $body, "From:" . $admin_email);
-							$conn->close();
+						$result = mysqli_query($conn,"SELECT * FROM SUBSCRIPTIONS;");
+						while ($row = mysqli_fetch_array($result))
+						{
+							$email = $row[0];
+							$crypt = openssl_encrypt($email, "aes-256-ctr", $key);
+							$body = "A new event has been created!
+		
+							Event: ".$event."
+							Location: ".$location."
+							Date: ".$event_date."
+							Time: ".$event_time."
+							Points up for grabs: ".$points."
+		
+							We hope to see you there!
 							
-						
-				}
-				
-				$conn->close();
-			 		header('Location: ../events/home.php');
-			 	}
+							Note: This will be your only email reminder! Please remember to check on the website for changes.
+							
+							
+		
+							To unsubscribe from this list, click here: 
+							Unsubscribe: //webprog.cs.ship.edu/webprog29/subscriptions/unsub.php?email=".$crypt."
+							";
+		
+							
+							//mail($email, "$subject", $body, "From:" . $admin_email);
+								$conn->close();
+								
+							
+					}
+					
+					$conn->close();
+				 		header('Location: ../events/home.php');
+				 	}
+				 }
+				 else
+				 {
+					 echo "input not valid";
+				 }
 			
 		}
 		

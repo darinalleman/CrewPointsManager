@@ -33,19 +33,20 @@
       </div>
     </nav>
 
-    <h3>Change Your Password</h3>
+    
     <div class"row-center">
-    <div style="width:50%; margin:auto;">
-      <form name="password_change" method="post" action="edit_user.php" onsubmit="return validateForm()">
-        <label>current password:</label><br />
-        <input type="text" id="current_password" name="current_password" /><br />
-        <label>new password:</label><br />
-        <input type="text" id="new_password" name="new_password" /><br />
-        <label>re-enter new password:</label><br />
-        <input type="text" id="confirm_password" name="confirm_password" /><br />
-        <button class="btn waves-effect waves-light" type="submit">DO IT.</button>
-      </form>
-    </div>
+      <div style="width:50%; margin:auto;">
+      <h3 class="header center blue-text">Change Your Password</h3>
+        <form name="password_change" method="post" action="edit_user.php" onsubmit="return validateForm()">
+          <label>Current Password</label><br />
+          <input type="text" id="current_password" name="current_password" /><br />
+          <label>New Password</label><br />
+          <input type="text" id="new_password" name="new_password" /><br />
+          <label>Re-enter Password</label><br />
+          <input type="text" id="confirm_password" name="confirm_password" /><br />
+          <button class="btn waves-effect waves-light" type="submit">DO IT.</button>
+        </form>
+      </div>
     </div>
 
 

@@ -40,8 +40,8 @@ Author: Darin Alleman
         <br>
       <h4 class="header center blue-text">Subscriptions</h1>
 
-<br>
-<br>
+        <br>
+          <br>
       <div class="row center">
         <h5 class="header col s12 light">Subscribe to our email updates to stay in the loop about all crew events!</h5>
       </div>

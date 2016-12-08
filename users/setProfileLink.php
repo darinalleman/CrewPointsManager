@@ -1,4 +1,5 @@
 <?php
+  // Darin Alleman
   // is the user logged in? yes - home, no - ask them to login
   require_once('functions.php');
   secureSession();

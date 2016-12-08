@@ -35,7 +35,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center teal-text">Upcoming Events</h1>
+      <h4 class="header center teal-text">Upcoming Events</h4>
       <div class="row center">
       	<table class="bordered" style="width:100%">
             <thead>
@@ -71,12 +71,12 @@
           </table>
       </div>
       <div class="row center">
-        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled<?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Event</a>
-        <a href="editEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Event</a>
-        <a href="removeEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Event</a><br>
+        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled<?php } ?> waves-effect waves-light teal lighten-2 white-text">Add Event</a>
+        <a href="editEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 white-text">Edit Event</a>
+        <a href="removeEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 white-text">Remove Event</a><br>
       </div>
       <div class="row center" >
-	  <a href="results.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-2 black-text">See Results</a><br>
+	  <a href="results.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-2 white-text">See Results</a><br>
       </div>
       </div>
       <br><br>

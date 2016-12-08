@@ -33,7 +33,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center teal-text">Teams</h1>
+      <h4 class="header center teal-text">Teams</h4>
       <div class="row center">
       	<table class="centered" style="width:100%">
             <thead>
@@ -78,10 +78,10 @@
       <div class="row center">
         <a href="addteam.php" id="download-button" class="btn-large
       <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>
-          waves-effect waves-light teal lighten-2 black-text">Add Team</a>
+          waves-effect waves-light teal lighten-2 white-text">Add Team</a>
         <a href="editteam.php" id="download-button" class="btn-large 
       <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>
-        waves-effect waves-light teal lighten-2 black-text">Edit Team</a>
+        waves-effect waves-light teal lighten-2 white-text">Edit Team</a>
       </div>
       </div>
       <br><br>

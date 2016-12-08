@@ -1,5 +1,5 @@
 <?php
-  // Nick Martinez - Final Project
+  // Nick Martinez
   // This is a table data gateway for the USERS table in the webprog29
   // database. It supports normal CRUD functions.
 
