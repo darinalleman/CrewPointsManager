@@ -1,6 +1,6 @@
 <?php
   // Nick Martinez - Final Project
-  // This is a table data gateway for the User table in the webprog29
+  // This is a table data gateway for the USERS table in the webprog29
   // database. It supports normal CRUD functions.
   require_once('../db_info/config.php');
 
@@ -28,7 +28,7 @@
   function createUserTable() {
     try {
         $db_handle = getConnection();
-        $sql = "CREATE TABLE User (
+        $sql = "CREATE TABLE USERS (
           id int NOT NULL PRIMARY KEY AUTOINCREMENT,
           email VARCHAR(128) NOT NULL,
           password VARCHAR(128) NOT NULL,
@@ -48,7 +48,7 @@
   function insertUser($email, $password, $team) {
     try {
       $db_handle = getConnection();
-      $stmt = $db_handle->prepare("INSERT INTO User (email, password, team)
+      $stmt = $db_handle->prepare("INSERT INTO USERS (email, password, team)
         VALUES (:email, :password, :team)");
       $data = array('email' => $email, 'password' => $password, 'team' => $team);
       $stmt->execute($data);
@@ -64,7 +64,7 @@
   function updateUser($email, $new_password) {
     try {
       $db_handle = getConnection();
-      $stmt = $db_handle->prepare("UPDATE User
+      $stmt = $db_handle->prepare("UPDATE USERS
         SET password = :password
         WHERE email = :email");
       $data = array('email' => $email, 'password' => $new_password);
@@ -82,7 +82,7 @@
   function fetchUser($email) {
     try {
       $db_handle = getConnection();
-      $stmt = $db_handle->prepare("SELECT * FROM User WHERE email = :email");
+      $stmt = $db_handle->prepare("SELECT * FROM USERS WHERE email = :email");
       $stmt->bindParam(':email', $email);
       $stmt->execute();
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -100,7 +100,7 @@
   function fetchAllUsers() {
     try {
       $db_handle = getConnection();
-      $stmt = $db_handle->query("SELECT * FROM User");
+      $stmt = $db_handle->query("SELECT * FROM USERS");
       $record_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $db_handle = null;
       return $record_set;

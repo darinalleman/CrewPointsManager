@@ -31,6 +31,7 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
@@ -59,6 +60,25 @@
 
     </div>
   </div>
+
+  <footer class="page-footer light-blue darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+        </div>
+      </div>
+    </div>
+      <div class="container">
+      	<div class="row">
+      		<div class="col 16 s12 grey-text text-lighten-3">
+      			Created by Nick Martinez
+      		</div>
+      		<div class="col 14 offset-12 s12 grey-text text-lighten-3">
+      			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      		</div>
+      	</div>
+    </div>
+  </footer>
 
 
   <!--  Scripts-->

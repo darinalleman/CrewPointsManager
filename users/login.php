@@ -9,14 +9,30 @@
   {
     $safe_email = htmlentities($_POST['email']);
     $user = fetchUser($safe_email);
-    if( !$user ) echo("Invalid username/password combination. <br />");
+
+    if( !$user )
+    {
+      // nope.
+      $message = "Invalid email / password. Try again.";
+      echo("<script type='text/javascript'>alert($message);</script>");
+      header('Location:login_page.php');
+    }
+
     if( password_verify($_POST['password'], $user['password']) )
     {
+      // yep.
       $_SESSION['email'] = $safe_email;
-      header('Location:../index.php');
+            $message = "Invalid email / password. Try again.";
+            echo("<script type='text/javascript'>alert($message);</script>");
+      die("You are now logged in. Please <a href='../index.php'>" .
+        "click here</a> to continue.<br><br>");
     } else
     {
-      echo("Invalid username/password combination. <br />");
+      // nope.
+      $message = "Invalid email / password. Try again.";
+      echo("<script type='text/javascript'>alert($message);</script>");
+      header('Location:login_page.php');
+      die();
     }
   }
 ?>

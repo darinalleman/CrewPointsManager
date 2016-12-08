@@ -1,36 +1,3 @@
-<?php
-  // Nick Martinez - Final Project
-  // This script adds a user to the database and takes care of validation.
-  require_once('functions.php');
-  require_once('user_gateway.php');
-
-  $safe_email = htmlentities($_POST['email']);
-  $password = $_POST['password'];
-
-  if( !validateEmail($safe_email)
-  {
-    $message = "Email not valid. Please enter a valid email.";
-    echo("<script type='text/javascript'>alert($message);</script>");
-    header('Location:add_user.php');
-  }
-
-  if( !validateEmail($password) )
-  {
-    $message = "Password not valid. Please enter a valid password. A valid
-      password consists of between 6 and 10 alphanumeric characters, at least
-      one capital letter, and at least one digit.";
-    echo("<script type='text/javascript'>alert($message);</script>");
-    header('Location:add_user.php');
-  }
-
-  // Now that we have validated the email and password server-side, we can
-  // insert the new user data into the database. Reminder that PDO sanitizes
-  // the strings for us.
-  insertUser($safe_email, $password);
-  
-  header('Location:home.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,6 +27,42 @@
       </div>
     </nav>
 
+    <?php
+      // Nick Martinez - Final Project
+      // This script adds a user to the database and takes care of validation.
+      require_once('functions.php');
+      require_once('user_gateway.php');
+
+      $safe_email = htmlentities($_POST['email']);
+      $safe_team = htmlentities($_POST['team']);
+      $password = $_POST['password'];
+
+      if( !validateEmail($safe_email)
+      {
+        $message = "Email not valid. Please enter a valid email.";
+        echo("<script type='text/javascript'>alert($message);</script>");
+        header('Location:add_user.php');
+      }
+
+      if( !validateEmail($password) )
+      {
+        $message = "Password not valid. Please enter a valid password. A valid
+          password consists of between 6 and 10 alphanumeric characters, at least
+          one capital letter, and at least one digit.";
+        echo("<script type='text/javascript'>alert($message);</script>");
+        header('Location:add_user.php');
+      }
+
+      // validation complete -> add record to database
+      insertUser($safe_email, $password, $safe_team);
+
+      $message = <<<_USRADDED
+        $safe_email successfully added as a member of the $safe_team team!
+_USRADDED;
+      echo("<script type='text/javascript'>alert($message);</script>");
+      header('Location:home.php');
+    ?>
+
 		<form method ="post" action="add_user.php" >
 			<label>email:</label><br>
 			<input type = "text" id ="email" name = "email"
@@ -67,6 +70,8 @@
 			<label>password:</label><br>
 			<input type = "text" id = "password" name = "password"
         placeholder="6-10 alphanumeric characters, >= 1 capital letter, >= 1 digit"><br>
+      <label>team:</label>
+      <input type = "text" id = "team" name = "team" /><br />
 			<button type = "submit">Add User!</button>
 		</form>
 

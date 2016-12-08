@@ -1,5 +1,8 @@
+<!--
+Author: Darin Alleman
+-->
+
 <?php
-require_once('sendNewEventEmail.php');
 //if "email" variable is filled out, send email
 if (isset($_REQUEST['email']))  {
   $email = $_REQUEST['email'];
@@ -7,6 +10,7 @@ if (isset($_REQUEST['email']))  {
     $emailErr = "Invalid email format";
   }
   else{
+    require_once '../db_info/config.php';
     $crypt = openssl_encrypt($email, "aes-256-ctr", $key);
     $admin_email = "crews-no-reply@cs.ship.edu";
     $subject = "Confirm your Ship CS Department Crews subscription";

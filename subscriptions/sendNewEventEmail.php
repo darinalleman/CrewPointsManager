@@ -1,3 +1,7 @@
+<!--
+Author: Darin Alleman
+-->
+
 <?php
 function sendEventEmail($event_type, $event_date, $event_location, $event_time, $event_points)
 {
@@ -12,6 +16,7 @@ function sendEventEmail($event_type, $event_date, $event_location, $event_time, 
       while ($row = mysqli_fetch_array($result))
       {
         $email = $row[0];
+        $crypt = openssl_encrypt($email, "aes-256-ctr", $key);
         $body = "A new event has been created!
 
         Event: ".$event_type."
@@ -22,7 +27,15 @@ function sendEventEmail($event_type, $event_date, $event_location, $event_time, 
 
         We hope to see you there!
         
-        Note: This will be your only email reminder! Please remember to check on the website for changes.";
+        Note: This will be your only email reminder! Please remember to check on the website for changes.
+        
+        
+
+        To unsubscribe from this list, click here: 
+        Unsubscribe: webprog.cs.ship.edu/webprog29/subscriptions/unsub.php?email=".$crypt."
+        ";
+
+        
         mail($email, "$subject", $body, "From:" . $admin_email);
         }
   }

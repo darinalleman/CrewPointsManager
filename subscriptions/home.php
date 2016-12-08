@@ -1,3 +1,6 @@
+<!--
+Author: Darin Alleman
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +49,6 @@
         <div style="width:50%; margin:auto;">
           <?php require_once 'sendConfirmationEmail.php';?>
         </div>
-
       </div>
       <br><br>
 
