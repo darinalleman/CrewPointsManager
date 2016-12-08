@@ -24,14 +24,14 @@
       $_SESSION['email'] = $safe_email;
       echo "logged in sucker";
       echo("<script type='text/javascript'>alert('Logged in!')</script>");
-      header('Location:../index.php');
+      //header('Location:../index.php');
     } else
     {
       // nope.
       echo "failure in the worst way";
-      $message = "Invalid email / password. Try again.";
-      echo("<script type='text/javascript'>alert($message);</script>");
-      header('Location:login_page.php');
+      //$message = "Invalid email / password. Try again.";
+      //echo("<script type='text/javascript'>alert($message);</script>");
+      //header('Location:login_page.php');
     }
   }
 ?>

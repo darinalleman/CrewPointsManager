@@ -16,8 +16,8 @@
 			require '../db_info/db.php';            
 		   	$dateQuery = "SELECT DISTINCT event_date FROM EVENTS WHERE event_date > CURDATE() ORDER BY event_date";
             $date_result = $conn->query($dateQuery);
-            echo"date:";
-            echo "<form method = 'POST' action = 'editEvent.php' name = 'date'>";
+            
+            echo "date: <form method = 'POST' action = 'editEvent.php' name = 'date'>";
             echo"<select name = 'dateField' id = 'dateField'>";
             while ($dateRow=mysqli_fetch_array($date_result)) 
             {
@@ -25,7 +25,7 @@
                 echo "<option>$date</option>";
             
             }
-             echo "</select>";
+             echo "</select><br>";
              echo "<button type = 'submit'>Submit</button>";
              echo "</form>";
              $queryDate = $date;
@@ -47,13 +47,15 @@
 				}
 				echo "</select>";
 				echo "<br><br>";
-				echo "Location ";
-				echo "<input type = 'text' name = 'location' required><br>";
-				echo "Time (XX:XX)";
-				echo "<input type = 'text' name = 'time' required><br>";
-				echo "Points";
-				echo "<input type = 'text' name = 'points' required><br>";
-				echo "<button type = 'submit'>Submit</button><br><br>";
+				echo "<table>";
+				echo "<tr><td>Location</td> ";
+				echo "<td><input type = 'text' name = 'location' required></td></tr>";
+				echo "<tr><td>Time (XX:XX)</td>";
+				echo "<td><input type = 'text' name = 'time' required></td></tr>";
+				echo "<tr><td>Points</td>";
+				echo "<td><input type = 'text' name = 'points' required></td></tr>";
+				echo "<tr><td><button type = 'submit'>Submit</button></td></tr>";
+				echo "</table>";
 			}
 			if(isset($_POST['eventField']))
 			{

@@ -48,7 +48,10 @@
             <br>
             <button class="btn waves-effect waves-light" type="submit" name="login">Login</button>
           </form>
-
+         
+        </div>
+        <br>
+ <p style="color:red;">
 <?php
   require_once('functions.php');
   require_once('user_gateway.php');
@@ -62,9 +65,7 @@
     if( empty($user) )
     {
       // nope.
-      $message = "Invalid email / password. Try again.";
-      echo("<script type='text/javascript'>alert($message);</script>");
-      header('Location:login_page.php');
+      echo "Invalid email / password. Try again.<br>";
     }
 
     if( password_verify($_POST['password'], $user['password']) )
@@ -75,14 +76,10 @@
     } else
     {
       // nope.
-      echo "failure in the worst way";
-      $message = "Invalid email / password. Try again.";
-      header('Location:login_page.php');
+      echo "Invalid email / password. Try again.<br>";
     }
   }
-?>
-        </div>
-
+?></p>
       </div>
       <br><br>
 

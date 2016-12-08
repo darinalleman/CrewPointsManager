@@ -87,7 +87,7 @@
           <label>password:</label><br />
           <input type = "text" id = "password" name = "password"
             placeholder="6-10 alphanumeric characters, >= 1 capital letter, >= 1 digit"><br />
-          <a href="addteam.php" id="download-button" class="btn-large
+          <a href="add_user.php" id="download-button" class="btn-large
           <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>
               waves-effect waves-light teal lighten-2 black-text" type="submit">Add User!</a>
 	    	</form>
