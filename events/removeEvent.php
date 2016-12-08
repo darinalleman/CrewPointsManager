@@ -73,7 +73,7 @@
               		
               		if(isset($_POST['event']) && isset($_POST['date']))
               		{
-	              		if(preg_match('/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $_POST['date']) && preg_match('/^[a-zA-Z]+$/', $_POST['event']))
+	              		if(/**preg_match('/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $_POST['date']) &&**/ preg_match('/^[a-zA-Z]+$/', $_POST['event']))
 	              		{
 	              			$date = sanitize($_POST['date']);
 				  			$event = sanitize($_POST['event']);

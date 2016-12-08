@@ -85,6 +85,6 @@
 	<br>
 	<a href = home.php>cancel</a>
 	<br><br>
-	<p>Ryan Handley - baby's first website</p>
+	<p>Ryan Handley </p>
 	
 </html>
