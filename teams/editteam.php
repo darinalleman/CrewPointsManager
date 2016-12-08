@@ -20,8 +20,12 @@
         <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+ 			<ul id="nav-mobile" class="side-nav">
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <hr>
+        <?php require_once('../users/setProfileLinkMobile.php');?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>

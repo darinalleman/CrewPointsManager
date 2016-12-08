@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Ryan Handley-->
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -70,9 +71,9 @@
           </table>
       </div>
       <div class="row center">
-        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled<?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Event</a>
-        <a href="editEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Event</a>
-        <a href="removeEvent.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Event</a><br>
+        <a href="addEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled<?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Event</a>
+        <a href="editEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Event</a>
+        <a href="removeEvent.php" id="download-button" class="btn-large <?php if(!isLoggedIn()){ ?> disabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Event</a><br>
       </div>
       <div class="row center" >
 	  <a href="results.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-2 black-text">See Results</a><br>

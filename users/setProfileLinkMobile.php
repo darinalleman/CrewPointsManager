@@ -10,6 +10,6 @@
   } else
   {
     $location = 'location.href="/webprog29/users/home.php"';
-    echo '<li><a onclick='.$location.'>Log In</a></li>';
+    echo '<li><a onclick='.$location.'>Profile</a></li>';
   }
 ?>

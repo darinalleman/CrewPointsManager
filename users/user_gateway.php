@@ -2,7 +2,6 @@
   // Nick Martinez - Final Project
   // This is a table data gateway for the USERS table in the webprog29
   // database. It supports normal CRUD functions.
-  require_once('../db_info/config.php');
 
   /**
    * Establishes a database connection.
@@ -10,10 +9,12 @@
    */
   function getConnection() {
     try {
+      $username = 'webprog29';
+      $password = 'sweamare';
       $db_host = 'webprog.cs.ship.edu';
       $db = 'webprog29';
-      $db_handle = new PDO("mysql:host=$db_host;dbname=$db", $usernameStored,
-        $passwordStored);
+      $db_handle = new PDO("mysql:host=$db_host;dbname=$db", $username,
+        $password);
       $db_handle->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     } catch(PDOException $e) {
       echo $e->getMessage();
@@ -31,9 +32,7 @@
         $sql = "CREATE TABLE USERS (
           id int NOT NULL PRIMARY KEY AUTOINCREMENT,
           email VARCHAR(128) NOT NULL,
-          password VARCHAR(128) NOT NULL,
-          team int NOT NULL,
-          FOREIGN KEY (team) REFERENCES TEAMS(id)
+          password VARCHAR(128) NOT NULL
         )";
         $db_handle->exec($sql);
         $db_handle = null;
@@ -48,9 +47,9 @@
   function insertUser($email, $password, $team) {
     try {
       $db_handle = getConnection();
-      $stmt = $db_handle->prepare("INSERT INTO USERS (email, password, team)
-        VALUES (:email, :password, :team)");
-      $data = array('email' => $email, 'password' => $password, 'team' => $team);
+      $stmt = $db_handle->prepare("INSERT INTO USERS (email, password)
+        VALUES (:email, :password)");
+      $data = array('email' => $email, 'password' => $password);
       $stmt->execute($data);
       $db_handle = null;
     } catch(PDOException $e) {

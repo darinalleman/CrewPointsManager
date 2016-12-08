@@ -17,7 +17,6 @@
         <li><a onclick="location.href='../index.php'" >Home</a></li>
         <li><a onclick="location.href='../events/home.php'" >Events</a></li>
         <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
-        <!--<li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>-->
         <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
@@ -57,7 +56,7 @@
 		}
 	?>
 	
-	<form method ="post" action="addteam.php" onsubmit = "return validateAll(this);">
+	<form method ="post" action="addteam.php" onsubmit = "return validate(this);">
 		<label>Team Name:</label><br>
 		<input type = "text" id ="name" name = "name"><br>
 		<label>Team Leader:</label><br>
@@ -98,9 +97,9 @@
   	function validate(form)
      {
           fail = validateTeamName(form.name.value);
-          fail += validateTeamPoints(form.points.value);
-          fail += validateTeamColor(form.color.value);
           fail += validateTeamLeader(form.leader.value);
+          fail += validateTeamColor(form.color.value);
+          fail += validateTeamPoints(form.points.value);
 		
           if (fail == "") return true;
           else
@@ -128,6 +127,62 @@
      	{
      		return "Invalid name.";
      	}
+     }
+     
+     function validateTeamLeader(field)
+     {
+     	if(field == "")
+     	{
+     		return "No team leader entered!"
+     	}
+     	else if(/^[a-zA-z]+$/.test(field))
+     	{
+     		if(field == "Dr. Girard" || field == "Dr. Wellington" || field == "Dr. Armstrong" || field == "Dr. Lee")
+     		{
+     			return "Leader already has a crew! Please select a different professor.";
+     		}
+     		return "";
+     	}
+     	else
+     	{
+     		return "Leader is not valid.";
+     	}
+     }
+     
+     function validateTeamColor(field)
+     {
+     	if(field == "")
+     	{
+     		return "No team color entered!"
+     	}
+     	else if(/^[a-zA-z]+$/.test(field))
+     	{
+     		if(field == "Red" || field == "Green" || field == "Blue" || field == "Yellow")
+     		{
+     			return "Color is already in use. Please select a different color.";
+     		}
+     		return "";
+     	}
+     	else
+     	{
+     		return "Color is not valid.";
+     	}
+     }
+     
+     function validateTeamPoints(field)
+     {
+		if(field == "")
+	     {
+	         return "No number entered";
+	     }
+	     else if(isNaN(field) || field <= 1 || field >= 100)
+	     {
+	         return "Number is not between 1 and 100";
+	     }
+	     else
+	     {
+	         return "Number is valid";
+	     }
      }
   </script>
   

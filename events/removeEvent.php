@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!RYAN HANDLEY-->
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -48,6 +49,13 @@
             </thead>
             <tbody>
               <?php
+	              function sanitize($data)
+				  {	
+					$data = trim($data);
+					$data = stripslashes($data);
+					$data = htmlspecialchars($data);
+					return $data;
+				}
               		require '../db_info/db.php';
               		$query = "SELECT * FROM EVENTS ORDER BY event_date";
               		$result = $conn->query($query);
@@ -65,16 +73,22 @@
               		
               		if(isset($_POST['event']) && isset($_POST['date']))
               		{
-	              		$date = $_POST['date'];
-	              		$event = $_POST['event'];
-	              	
-				  		$query =("DELETE FROM EVENTS WHERE event = '$event' AND event_date = '$date'");
-				  		$conn->query($query);
-				  		header('Location: ../events/home.php');
+	              		if(preg_match('/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $_POST['date']) && preg_match('/^[a-zA-Z]+$/', $_POST['event']))
+	              		{
+	              			$date = sanitize($_POST['date']);
+				  			$event = sanitize($_POST['event']);
+	              		
+		              		$stmt = $conn->prepare("DELETE FROM EVENTS WHERE event = ? AND event_date = ?");
+					  		$stmt->bind_param('ss', $event, $date);
+					  		$stmt->execute();
+					  		header('Location: ../events/home.php');
+					  	}
+					  	else
+					  	{
+						  	echo "fields not valid";
+					  	}
               		}	              	
-	              	              		
-              		
-              ?>
+	           ?>
 			</tbody>
           </table>
       </div>
@@ -87,8 +101,9 @@
 		<label name = "date">Date</label>   
 		<input name = "date" type = "text">
 		<input class = "btn-large" value = "submit" type = "submit">
-		   
-	   </form>
+		</form>
+		<br>
+		<a href="home.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-2 black-text">Cancel</a>
 	   </div>
  
       <br><br>
@@ -102,7 +117,7 @@
 
     </div>
 
-  <footer class="page-footer light-blue darken-2">
+  <<footer class="page-footer grey darken-3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">

@@ -1,3 +1,4 @@
+<!-- Nick Martinez, Darin Alleman -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,27 +33,54 @@
     </div>
   </nav>
 
+
+
+
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="height:100%">
         <br>
       <h4 class="header center blue-text">Login</h1>
       <div class="row center">
         <div style="width:50%; margin:auto;">
-          <form id = "login" method="post" action="login.php" class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <input placeholder="Email" id="email" type="email" class="validate">
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input placeholder="Password" id="password" type="password" class="validate">
-              </div>
-            </div>
-            <br /><br />
-            <button class="btn waves-effect waves-light" type="submit" name="action">Login
-            </button>
+          <form method="post" action="login_page.php" class="col s12">
+            <input placeholder="Email" id="email" name="email" type="email" class="validate">
+            <input placeholder="Password" id="password" name="password" type="password" class="validate">
+            <br>
+            <button class="btn waves-effect waves-light" type="submit" name="login">Login</button>
           </form>
+
+<?php
+  require_once('functions.php');
+  require_once('user_gateway.php');
+
+  secureSession();
+  if( isset($_POST['email']) && isset($_POST['password']))
+  {
+    $safe_email = htmlentities($_POST['email']);
+    $user = fetchUser($safe_email);
+
+    if( empty($user) )
+    {
+      // nope.
+      $message = "Invalid email / password. Try again.";
+      echo("<script type='text/javascript'>alert($message);</script>");
+      header('Location:login_page.php');
+    }
+
+    if( password_verify($_POST['password'], $user['password']) )
+    {
+      // yep.
+      $_SESSION['user_id'] = $user['id'];
+      header('Location:../index.php');
+    } else
+    {
+      // nope.
+      echo "failure in the worst way";
+      $message = "Invalid email / password. Try again.";
+      header('Location:login_page.php');
+    }
+  }
+?>
         </div>
 
       </div>
@@ -61,9 +89,9 @@
     </div>
   </div>
 
-  <footer class="page-footer light-blue darken-2">
+  <footer style="position: absolute; width:100%;bottom: 0px;" class="page-footer light-blue darken-2">
     <div class="container">
-      <div class="row">
+    <div class="row">
         <div class="col l6 s12">
         </div>
       </div>
@@ -71,7 +99,7 @@
       <div class="container">
       	<div class="row">
       		<div class="col 16 s12 grey-text text-lighten-3">
-      			Created by Nick Martinez
+      			Nick Martinez
       		</div>
       		<div class="col 14 offset-12 s12 grey-text text-lighten-3">
       			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>

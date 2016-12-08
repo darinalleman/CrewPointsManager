@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--RYAN HANDLEY-->
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,25 +10,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <script>
+  </head>
+  <script language = "JavaScript">
 
-	var errorString = "";
-
-	function validateEventInput(input)
-	{
-		return (field = "") ? "Event field is empty.\n" : "";
-	}
-
-	function validateLocation(input)
-	{
-		return (field = "") ? "Event field is empty.\n" : "" ;
-	}
 
 	function validateDate(input)
 	{
-		if(input == "") return "Date field is empty.\n";
-
-		else if(!/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/.test(input))
+		var reg = /^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/;
+		if(!reg.test(input))
 		{
 			return "Date format is invalid\n";
 		}
@@ -36,8 +26,9 @@
 
 	function validateTime(input)
 	{
-		if(input ==  "") return "Time field is empty.\n"
-		else if(!/([01]?[0-9]|2[0-3]):[0-5][0-9])/.test(input))
+		var reg = /([01]?[0-9]|2[0-3]):[0-5][0-9])/;
+		
+		if(!reg.test(input))
 		{
 			return "time format is not valid\n";
 		}
@@ -46,31 +37,30 @@
 
 	function validatePoints(input)
 	{
-		if(input == "") return "points field is empty\n";
-		else if(!isNaN)
+		if(!isNaN(input))
 		{
 			return "points field needs to be an integer\n";
 		}
 		return "";
 	}
 
-	function validateAll(form)
+	function validateAll()
 	{
-		fail = validateEventInput(form.event.value);
-		fail += validateLocation(form.location.value);
-		fail += validateDate(form.event_date.value);
-		fail += validateTime(form.event_time.value);
-		fail += validatePoints(form.points.value);
+		
+		
+		fail += validateDate(document.getElementById("event_date").value);
+		fail += validateTime(document.getElementById("event_time").value);
+		fail += validatePoints(document.getElementById("points").value);
 
-		if(fail == "") return true
+		if(fail == "") return true;
 		else
 		{
-			alert(fail);
+			 alert(fail);
 			return false;
 		}
 	}
-</script>
-</head>
+	</script>
+
 <body>
   <nav class="red" role="navigation">
     <div  style="width:100%" class="nav-wrapper container"><a id="logo-container"
@@ -110,47 +100,84 @@
 
 		if(isset($_POST['event']) && isset($_POST['location']) && isset($_POST['event_date']) && isset($_POST['event_time']) && isset($_POST['points']))
 		{
-			$event = sanitize($_POST['event']);
-			$location = sanitize($_POST['location']);
-			$event_date = sanitize($_POST['event_date']);
-			$event_time = sanitize($_POST['event_time']);
-			$points = sanitize($_POST['points']);
-
-			require '../db_info/db.php';
-			include '../subscriptions/sendNewEventEmail.php';
-		 	$stmt = $conn->prepare("INSERT INTO EVENTS(event, location, event_date, event_time, points) VALUES(?,?,?,?,?)");
-		 	$stmt->bind_param('ssssi', $event, $location, $event_date, $event_time, $points);
-			sendEventEmail($event, $event_date, $location, $event_time, $points);
-			$stmt->execute();
-		 	if(!$stmt->execute())
-		 	{
-			 	$message = "form did not submit!";
-			 	echo "<script type='text/javascript'>alert('$message');</script>";
-		 	}
-		 	else
-		 	{
-			 	$conn->close();
-		 		header('Location: ../events/home.php');
-		 	}
-
+				
+				$event = sanitize($_POST['event']);
+				$location = sanitize($_POST['location']);
+				$event_date = sanitize($_POST['event_date']);
+				$event_time = sanitize($_POST['event_time']);
+				$points = sanitize($_POST['points']);
+			
+	
+				require '../db_info/db.php';
+				include '../subscriptions/sendNewEventEmail.php';
+			 	$stmt = $conn->prepare("INSERT INTO EVENTS(event, location, event_date, event_time, points) VALUES(?,?,?,?,?)");
+			 	$stmt->bind_param('ssssi', $event, $location, $event_date, $event_time, $points);
+			 	if(!$stmt->execute())
+			 	{
+				 	$message = "form did not submit!";
+				 	echo "<script type='text/javascript'>alert('$message');</script>";
+			 	}
+			 	else
+			 	{
+				 /** EMAIL Functionality written by Darin Alleman **/
+					$admin_email = "crews-no-reply@cs.ship.edu";
+					$subject = "New Event for Ship CS Crews!";
+					
+					$result = mysqli_query($conn,"SELECT * FROM SUBSCRIPTIONS;");
+					while ($row = mysqli_fetch_array($result))
+					{
+						$email = $row[0];
+						$crypt = openssl_encrypt($email, "aes-256-ctr", $key);
+						$body = "A new event has been created!
+	
+						Event: ".$event."
+						Location: ".$location."
+						Date: ".$event_date."
+						Time: ".$event_time."
+						Points up for grabs: ".$points."
+	
+						We hope to see you there!
+						
+						Note: This will be your only email reminder! Please remember to check on the website for changes.
+						
+						
+	
+						To unsubscribe from this list, click here: 
+						Unsubscribe: //webprog.cs.ship.edu/webprog29/subscriptions/unsub.php?email=".$crypt."
+						";
+	
+						
+						//mail($email, "$subject", $body, "From:" . $admin_email);
+							$conn->close();
+							
+						
+				}
+				
+				$conn->close();
+			 		header('Location: ../events/home.php');
+			 	}
+			
 		}
+		
+		
+
+
 	    ?>
-
-
-		<form method ="post" action="addEvent.php" onsubmit = "return validateAll(this)">
-			<label>Type:</label><br>
-			<input type = "text" id ="event" name = "event"><br>
+		<form name="form1" id="form1" method ="post" action="addEvent.php" onubmit="return validateAll()">
+			<label>Event:</label><br>
+			<input type = "text" id ="event" name = "event" required><br>
 			<label>Location:</label><br>
-			<input type = "text" id = "location" name = "location"><br>
+			<input type = "text" id = "location" name = "location" required><br>
 			<label>Date (YYYY-MM-DD):</label><br>
-			<input type = "text" id = "event_date" name ="event_date"><br>
+			<input type = "text" id = "event_date" name ="event_date" required><br>
 			<label>Time (24 hour format):</label><br>
-			<input type = "text" id = "event_time" name = "event_time"><br>
+			<input type = "text" id = "event_time" name = "event_time" required><br>
 			<label>Points:</label><br>
-			<input type ="text" id = "points" name = "points"</label><br>
-
-			<button type = "submit">Submit</button>
+			<input type ="text" id = "points" name = "points" required><br>
+			<input class = "btn-large" value = "submit" type = "submit">
 		</form>
+		<br>
+		<a href="home.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-2 black-text">Cancel</a>
         </div>
         <br>
       </div>
@@ -164,14 +191,13 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <p class="grey-text text-lighten-4">Ryan Handley</p>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="grey-text text-lighten-3" href="http://materializecss.com"></a>
+      <a class="grey-text text-lighten-3" href="http://materializecss.com"></a>
       </div>
     </div>
   </footer>
@@ -181,6 +207,5 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <script src="../js/init.js"></script>
-
   </body>
 </html>

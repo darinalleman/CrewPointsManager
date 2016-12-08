@@ -1,3 +1,7 @@
+<!--
+Author: Darin Alleman
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +82,24 @@
 
     </div>
   </div>
-
+<footer style="position: absolute; width:100%;bottom: 0px;" class="page-footer light-blue darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+        </div>
+      </div>
+    </div>
+      <div class="container">
+      	<div class="row">
+      		<div class="col 16 s12 grey-text text-lighten-3">
+      			Darin Alleman, Nick Martinez, Andrew Corchado, Ryan Handley
+      		</div>
+      		<div class="col 14 offset-12 s12 grey-text text-lighten-3">
+      			Powered by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      		</div>
+      	</div>
+    </div>
+  </footer>
 <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>

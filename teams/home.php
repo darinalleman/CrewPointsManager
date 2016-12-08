@@ -74,9 +74,14 @@
             </tbody>
           </table>
       </div>
+ 
       <div class="row center">
-        <a href="addteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Team</a>
-        <a href="editteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Team</a>
+        <a href="addteam.php" id="download-button" class="btn-large
+      <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>
+          waves-effect waves-light teal lighten-2 black-text">Add Team</a>
+        <a href="editteam.php" id="download-button" class="btn-large 
+      <?php require_once '../users/functions.php'; if(!(isLoggedIn())) echo "disabled";?>
+        waves-effect waves-light teal lighten-2 black-text">Edit Team</a>
       </div>
       </div>
       <br><br>
