@@ -1,0 +1,5 @@
+-- sortable events list
+-- more user settings
+    -- email confirmation for added accounts
+--manually update total points
+--HTML styled emails

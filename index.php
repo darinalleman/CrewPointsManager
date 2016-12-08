@@ -7,7 +7,7 @@ Author: Darin Alleman
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>2016-2017 Crew Points Tracker</title>
+  <title>Crew Points - Ship CS</title>
 
 <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

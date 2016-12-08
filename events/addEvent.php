@@ -107,7 +107,7 @@
 				$event_time = sanitize($_POST['event_time']);
 				$points = sanitize($_POST['points']);
 			
-				if(preg_match('/^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/', $event_time) && preg_match('/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $event_date) && is_numeric($points))
+				if(preg_match('/^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/', $event_time) && preg_match('/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $event_date) && 						is_numeric($points))
 				{
 					require '../db_info/db.php';
 					include '../subscriptions/sendNewEventEmail.php';
@@ -150,12 +150,10 @@
 							
 							mail($email, "$subject", $body, "From:" . $admin_email);
 							$conn->close();
-								
-							
-					}
+						}
 					
 					$conn->close();
-				 		header('Location: ../events/home.php');
+				 	header('Location: ../events/home.php');
 				 	}
 				 }
 				 else
