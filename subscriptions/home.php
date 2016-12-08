@@ -36,6 +36,9 @@
     <div class="container" style="height:100%">
         <br>
       <h4 class="header center blue-text">Subscriptions</h1>
+
+<br>
+<br>
       <div class="row center">
         <h5 class="header col s12 light">Subscribe to our email updates to stay in the loop about all crew events!</h5>
       </div>
@@ -56,6 +59,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <script src="../js/init.js"> </script>
 <script type="text/javascript">
+
+ $(document).ready(function() {
+    $('select').material_select();
+  });
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);

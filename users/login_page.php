@@ -7,7 +7,7 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
@@ -37,7 +37,7 @@
       <h4 class="header center blue-text">Login</h1>
       <div class="row center">
         <div style="width:50%; margin:auto;">
-          <form method="post" class="col s12">
+          <form id = "login" method="post" action="login.php" class="col s12">
             <div class="row">
               <div class="input-field col s12">
                 <input placeholder="Email" id="email" type="email" class="validate">
@@ -49,9 +49,6 @@
               </div>
             </div>
             <br /><br />
-            <?php
-              require_once 'login.php';
-            ?>
             <button class="btn waves-effect waves-light" type="submit" name="action">Login
             </button>
           </form>
@@ -66,7 +63,7 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <script src="../js/init.js"> </script>
   </body>
 </html>

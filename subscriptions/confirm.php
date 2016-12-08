@@ -51,7 +51,7 @@
         else {
             echo '<p>No ID parameter.</p>';
         }
-
+        $conn->close();
 ?>
       </div>
       <div class="row center">

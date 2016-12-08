@@ -7,7 +7,7 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
@@ -47,9 +47,9 @@
   </footer>
 
 
-  <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script src="../js/init.js"> </script>
 
   </body>
 </html>

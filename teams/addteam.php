@@ -17,7 +17,8 @@
         <li><a onclick="location.href='../index.php'" >Home</a></li>
         <li><a onclick="location.href='../events/home.php'" >Events</a></li>
         <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
-        <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
+        <!--<li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>-->
+        <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

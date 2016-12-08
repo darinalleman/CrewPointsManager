@@ -1,6 +1,4 @@
 <?php
-require_once('../db_info/config.php');
-require_once('../db_info/db.php');
 require_once('sendNewEventEmail.php');
 //if "email" variable is filled out, send email
 if (isset($_REQUEST['email']))  {

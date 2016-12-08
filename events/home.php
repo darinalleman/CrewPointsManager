@@ -62,6 +62,8 @@
               			echo "<td>".$row['points']."</td>";
               			echo "</tr>";
               		}
+              		$result->close();
+              		$conn->close();
               ?>
 
             </tbody>

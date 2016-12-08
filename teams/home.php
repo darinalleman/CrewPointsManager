@@ -14,14 +14,18 @@
   <nav class="#b71c1c green"  role="navigation">
     <div style="width:100%" class="nav-wrapper container"><a id="logo-container" href="../" class="brand-logo"><img src=../Ship_logo.png></a>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="location.href='../index.php'" >Home</a></li>
-        <li><a onclick="location.href='../events/home.php'" >Events</a></li>
-        <li><a onclick="location.href='../subscriptions/home.php'">Subscriptions</a></li>
-        <li><a href="../users/home.php"><i class="material-icons left">account_circle</i>Profile</a></li>
+        <li><a onclick="location.href='/webprog29/'" >Home</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <?php require_once('../users/setProfileLink.php'); ?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a onclick="location.href='/webprog29/teams/home.php'" >Teams</a></li>
+        <li><a onclick="location.href='/webprog29/events/home.php'" >Events</a></li>
+        <li><a onclick="location.href='/webprog29/subscriptions/home.php'">Subscriptions</a></li>
+        <hr>
+        <?php require_once('../users/setProfileLinkMobile.php');?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -73,17 +77,9 @@
       <div class="row center">
         <a href="addteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Add Team</a>
         <a href="editteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Edit Team</a>
-        <a href="removeteam.php" id="download-button" class="btn-large <?php if(!$loggedin){ ?> enabled <?php } ?> waves-effect waves-light teal lighten-2 black-text">Remove Team</a><br>
       </div>
       </div>
       <br><br>
-
-    </div>
-
-  <div class="container">
-    <div class="section">
-
-      </div>
 
     </div>
 
@@ -109,7 +105,7 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script src="../js/init.js"></script>
   </body>
 </html>

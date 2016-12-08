@@ -79,7 +79,7 @@
         <li><a onclick="location.href='../index.php'" >Home</a></li>
         <li><a onclick="location.href='../teams/home.php'" >Teams</a></li>
         <li><a onclick="location.href='home.php'">Subscriptions</a></li>
-        <li><a href="../users/home.html"><i class="material-icons left">account_circle</i>Profile</a></li>
+        <?php require_once('../users/setProfileLink.php');?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -121,6 +121,7 @@
 		 	$stmt = $conn->prepare("INSERT INTO EVENTS(event, location, event_date, event_time, points) VALUES(?,?,?,?,?)");
 		 	$stmt->bind_param('ssssi', $event, $location, $event_date, $event_time, $points);
 			sendEventEmail($event, $event_date, $location, $event_time, $points);
+			$stmt->execute();
 		 	if(!$stmt->execute())
 		 	{
 			 	$message = "form did not submit!";
@@ -128,7 +129,7 @@
 		 	}
 		 	else
 		 	{
-		 		
+			 	$conn->close();
 		 		header('Location: ../events/home.php');
 		 	}
 
