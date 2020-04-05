@@ -1,0 +1,12 @@
+-- add user homepage
+-- add functionality to add / remove users
+-- client + server side validation of email
+-- add functionality to change password
+-- styling of user homepage + user login page
+
+// DONE //
+-- data access logic + sanitation of input
+-- sessions / cookies
+-- login functionality
+-- check if user is logged in
+-- move logout logic to it's own script
